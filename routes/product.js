@@ -1,21 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET product page. */
-router.get('/men', function (req, res, next) {
-    res.render('product/men');
-});
+const productController = require('../Controller/ProductController');
 
-router.get('/women', function (req, res, next) {
-    res.render('product/women');
-});
-
-router.get('/kid', function (req, res, next) {
-    res.render('product/kid');
-});
-
-router.get('/', function (req, res, next) {
-    res.render('product/product');
-});
+router.use('/men', productController.menList);
+router.use('/women', productController.womenList);
+router.use('/sale', productController.saleList);
+router.use('/', productController.showDetail);
 
 module.exports = router;
