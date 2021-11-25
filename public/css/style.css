@@ -798,6 +798,21 @@ span.glyphicon.glyphicon-share-alt {
 }
 /*--press end here--*/
 /*--product strat here--*/
+.product .filter-button {
+    outline: none;
+    border: none;
+    height: 2.5em;
+    width: 6em;
+    background-color: #EA552B;
+    color: white;
+}
+.product .filter-button:hover {
+    background:#847057;
+	transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+}
 .product {
     padding: 6em 0em;
 }
