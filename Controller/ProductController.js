@@ -1,3 +1,5 @@
+const product = require('../models/product');
+
 class ProductController {
 
     //[GET] men product list
@@ -17,7 +19,10 @@ class ProductController {
 
     //[GET] detail product (will add slug)
     showDetail(req, res) {
-        res.render('product/product');
+        product.find({})
+        .then(products => res.json(products))
+        .catch(error => console.log("error"));
+        // res.render('product/product');
     }
 }
 
