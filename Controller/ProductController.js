@@ -19,10 +19,7 @@ class ProductController {
 
     //[GET] detail product (will add slug)
     showDetail(req, res) {
-        product.find({})
-        .then(products => res.json(products))
-        .catch(error => console.log("error"));
-        // res.render('product/product');
+        res.render('product/product');
     }
 }
 
