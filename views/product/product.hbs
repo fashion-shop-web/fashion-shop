@@ -11,7 +11,6 @@
                                 <div class="thumb-image"> <img src={{this}} data-imagezoom="true"
                                         class="img-responsive"> </div>
                             </li>
-
                             {{/each}}
                         </ul>
                     </div>
@@ -26,9 +25,13 @@
                     <p>- {{this}}</p>
                     {{/each}}
 
-                    <h2 class="item_price" style="margin-top: 2em;">Price: {{detail.price}}$</h2>
+
                     {{#if detail.sale}}
+                    <h2 class="item_price" style="margin-top: 2em; text-decoration:line-through">Price:
+                        {{detail.price}}$</h2>
                     <h3>Sale: {{detail.sale}}$</h3>
+                    {{else}}
+                    <h2 class="item_price" style="margin-top: 2em;">Price: {{detail.price}}$</h2>
                     {{/if}}
                     <ul class="bann-btns">
                         <li><a href="#" class="item_add">Add To Cart</a></li>

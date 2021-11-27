@@ -1,27 +1,25 @@
-const product = require('../models/product');
+const myService = require('../services/productService');
+
 
 class ProductController {
     //[GET] men product list
     async menList(req, res) {
         try {
-            let products = await product.find({ gender: false }).lean();
-
-            products = products.map(item => {
-                let name = item.name.length < 30 ? item.name : (item.name.substring(0, 30) + '.....')
-                let slug = "/product/" + item.slug
-                let sale = item.sale !== 0 ? item.sale + '%' : 'No promotion'
-                return { ...item, name: name, slug: slug, sale: sale }
-            })
-
-            res.render('product/men', { products })
-        } catch (error) {
-            console.log(error)
+            const [products, pages] = await myService.adjustList(false, req.query.page || 1);
+            res.render('product/men', { products, pages });
+        } catch (err) {
+            console.log(err);
         }
     }
 
     //[GET] women product list
-    womenList(req, res) {
-        res.render('product/women')
+    async womenList(req, res) {
+        try {
+            const products = await myService.adjustList(true);
+            res.render('product/women', { products });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     //[GET] sale product list
@@ -31,21 +29,12 @@ class ProductController {
 
     //[GET] detail product (will add slug)
     async showDetail(req, res) {
-        let detail = await product.findOne({ slug: req.params.slug }).lean();
-
-        detail.gender = detail.gender ? 'Women' : 'Men';
-        if (detail.sale !== 0) {
-            detail.sale = detail.price - (detail.price * detail.sale / 100);
+        try {
+            const [detail, relate] = await myService.adjustDetail(req.params.slug);
+            res.render('product/product', { detail, relate });
+        } catch (err) {
+            console.log(err);
         }
-
-        let relate = await (await product.find({ category: detail.category }).lean()).splice(0, 4);
-        relate = relate.map(item => {
-            let name = item.name.length < 30 ? item.name : (item.name.substring(0, 30) + '.....')
-            let slug = "/product/" + item.slug
-            let sale = item.sale !== 0 ? item.sale + '%' : 'No promotion'
-            return { ...item, name: name, slug: slug, sale: sale }
-        })
-        res.render('product/product', { detail, relate });
     }
 }
 

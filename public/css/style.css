@@ -1242,6 +1242,45 @@ span.glyphicon.glyphicon-share-alt {
 	height: 100%;
 }
 /*--end scrollpane--*/
+.pagination .page-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+.pagination .page-list .page {
+    
+    
+}
+.pagination .page-list .page a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.466);
+    min-width: 2.3em;
+    height: 1.7em;
+    display: block;
+    margin-left: 1em;
+    text-align: center;
+    line-height: 1.7em;
+    font-size: 1em;  
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.342);
+    border-radius: 3px;
+}
+.pagination .page-list .page:first-child {
+    margin-left: 0;
+}
+.pagination .page-list .page:hover a{
+    opacity: 0.7;
+}
+
+.current-page a  {
+    background-color: #EA552B;
+    border: none !important;
+}
+
+
+
+
 /*--product end her--*/
 /*--single start here--*/
 .single {
@@ -2178,6 +2217,10 @@ ul.bann-btns li a {
 }
 }
 @media(max-width:800px){
+.pagination-containter {
+    display: flex;
+    justify-content: center;
+}
 .nav > li > a {
     padding: 10px 10px;
 }	
@@ -2255,6 +2298,10 @@ span.bann-heart {
 .product-block {
     padding: 0px;
 }
+.pagination-containter {
+    display: flex !important;
+    justify-content: center;
+}
 .single {
     padding: 4em 0em;
 }
@@ -2328,6 +2375,10 @@ h3.typo1 {
     margin-top: 8px;
     margin-right: 0px;
 }
+.pagination-containter {
+    display: flex !important;
+    justify-content: center;
+}
 .navbar-header {
     text-align: center;
 }
@@ -2343,8 +2394,13 @@ h3.typo1 {
 }
 }
 @media(max-width:640px){
+
 .top-nav {
     width: 35%;
+}
+.pagination-containter {
+    display: flex !important;
+    justify-content: center;
 }	
 ul.nav.navbar-nav li a {
     text-align: center;
@@ -2433,9 +2489,14 @@ h3.typo1 {
 }	
 }
 @media(max-width:480px){
+
 .banner-left img {
     width: 75%;
     margin: 0 auto;
+}
+.pagination-containter {
+    display: flex !important;
+    justify-content: center;
 }
 .home-product-bottom h3 {
     font-size: 1em;
@@ -2641,11 +2702,19 @@ h3.typo1 {
 .login-right a {
     width: 50%;
 }
+.pagination-containter {
+    display: flex !important;
+    justify-content: center !important;
+}
 }
 @media(max-width:384px){
 .header-right {
     width: 100%;
     float: left;
+}
+.pagination-containter {
+    display: flex !important;
+    justify-content: center;
 }
 .top-nav {
     width: 100%;
