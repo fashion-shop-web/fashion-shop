@@ -1,5 +1,4 @@
 const productRouter = require('../routes/product');
-const adminRouter = require('../routes/admin');
 const userRouter = require('../routes/user');
 const siteRouter = require('../routes/site');
 
@@ -7,9 +6,6 @@ const siteRouter = require('../routes/site');
 function route(app) {
   //product list
   app.use('/product', productRouter);
-
-  //admin
-  app.use('/admin', adminRouter);
 
   //user
   app.use('/user', userRouter);

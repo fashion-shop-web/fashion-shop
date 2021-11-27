@@ -14,8 +14,8 @@ const user = new Schema({
     role: { type: Boolean, default: 0 }, //user/admin
     status: { type: String, default: 0 }, //ban/unban
     cartId: { type: String },
-    createDate: { type: Date, default: Date.now },
-    updateDate: { type: Date, default: Date.now }
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('user', user);

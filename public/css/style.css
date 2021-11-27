@@ -1255,7 +1255,7 @@ span.glyphicon.glyphicon-share-alt {
     height: 335px !important;
 }
 .single-top-left h2 {
-    font-size: 1.1em;
+    font-size: 1.3em;
     color:#847057;
     font-family: 'Oswald', sans-serif;
     margin-bottom: 0.6em;
@@ -1263,7 +1263,7 @@ span.glyphicon.glyphicon-share-alt {
 .single-top-left h1 {
     font-size: 1.6em;
     color:#EA572D;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.2em;
     font-family: 'Oswald', sans-serif;
 }
 .single-top-left h3 {
@@ -1303,6 +1303,13 @@ span.glyphicon.glyphicon-share-alt {
 .singlepage-product {
     padding-top: 6em;
 }
+.singlepage-product .related-product {
+    font-size: 2em;
+    margin-bottom: 1em;
+    color: #EA572D;
+    font-family: 'Oswald', sans-serif;
+}
+
 .singpage-block {
     box-shadow: 0px 0px 2px 2px #E6E6E6;
 }
