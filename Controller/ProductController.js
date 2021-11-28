@@ -6,7 +6,7 @@ class ProductController {
     async menList(req, res) {
         try {
             const [products, pages] = await myService.adjustList(false, req.query.page || 1);
-            res.render('product/men', { products, pages });
+            res.render('product/men', { products, pages, currentPage: req.query.page || 1 });
         } catch (err) {
             console.log(err);
         }
@@ -15,8 +15,8 @@ class ProductController {
     //[GET] women product list
     async womenList(req, res) {
         try {
-            const products = await myService.adjustList(true);
-            res.render('product/women', { products });
+            const [products, pages] = await myService.adjustList(true, req.query.page || 1);
+            res.render('product/women', { products, pages, currentPage: req.query.page || 1 });
         } catch (err) {
             console.log(err);
         }

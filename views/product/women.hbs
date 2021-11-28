@@ -79,8 +79,7 @@
                                     class="img-responsive zoom-img"></a>
                         </div>
                         <div class="home-product-bottom">
-                            <h3 style="height: 2.5em; text-transform: uppercase;"><a
-                                    href={{this.slug}}>{{this.name}}</a>
+                            <h3 style="height: 3em; text-transform: uppercase;"><a href={{this.slug}}>{{this.name}}</a>
                             </h3>
                             <p style="color: black; font-size: 1.3em">Price: {{this.price}}$</p>
                         </div>
@@ -93,6 +92,20 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <div class="women-pagination col-md-12">
+                <ul class="page-list">
+                    <li class="page"><a href="">&lt;&lt;</a></li>
+                    {{#each pages}}
+                    <li class="page"><a href={{this.pageA}}>{{this.page}}</a></li>
+                    {{/each}}
+                    <li class="page"><a href="">&gt;&gt;</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="women-current-page" style="display: none;" name={{currentPage}}></div>
     </div>
 </div>
 <!--product end here-->

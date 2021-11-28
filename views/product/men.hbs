@@ -79,8 +79,7 @@
                                     class="img-responsive zoom-img"></a>
                         </div>
                         <div class="home-product-bottom">
-                            <h3 style="height: 2.5em; text-transform: uppercase;"><a
-                                    href={{this.slug}}>{{this.name}}</a>
+                            <h3 style="height: 3em; text-transform: uppercase;"><a href={{this.slug}}>{{this.name}}</a>
                             </h3>
                             <p style="color: black; font-size: 1.3em">Price: {{this.price}}$</p>
                         </div>
@@ -95,17 +94,18 @@
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-9">
-            <div class="pagination col-md-12">
+            <div class="men-pagination col-md-12">
                 <ul class="page-list">
-                    <li class="page"><a href="">&lt;&lt;</a></li>
-                    <li class="page current-page"><a href="?page=1">1</a></li>
-                    <li class="page"><a href="?page=2">2</a></li>
-                    <li class="page"><a href="?page=3">3</a></li>
-                    <li class="page"><a href="">&gt;&gt;</a></li>
+                    <li class="page"><a href="#">&lt;&lt;</a></li>
+                    {{#each pages}}
+                    <li class=" page"><a href={{this.pageA}}>{{this.page}}</a></li>
+                    {{/each}}
+                    <li class="page"><a href="#">&gt;&gt;</a></li>
                 </ul>
             </div>
 
         </div>
+        <div id="men-current-page" style="display: none;" name={{currentPage}}></div>
     </div>
 </div>
 <!--product end here-->
