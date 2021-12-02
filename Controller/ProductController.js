@@ -2,6 +2,16 @@ const myService = require('../services/productService');
 
 
 class ProductController {
+    //[GET] all product list
+    async allList(req, res) {
+        try {
+            const [products, pages] = await myService.getAll(req.query.page || 1);
+            res.render('product/all', { products, pages, currentPage: req.query.page || 1 });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     //[GET] men product list
     async menList(req, res) {
         try {
@@ -23,8 +33,13 @@ class ProductController {
     }
 
     //[GET] sale product list
-    saleList(req, res) {
-        res.render('product/sale')
+    async saleList(req, res) {
+        try {
+            const [products, pages] = await myService.getSale(req.query.page || 1);
+            res.render('product/sale', { products, pages, currentPage: req.query.page || 1 });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     //[GET] detail product (will add slug)

@@ -17,7 +17,8 @@
                                             name="checkbox"><i></i>Handbag</label>
                                     <label class="checkbox"><input type="checkbox"
                                             name="checkbox"><i></i>Bracelet</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Watche</label>
+                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Wrist
+                                        watch</label>
                                 </div>
                             </div>
                         </section>
@@ -92,9 +93,11 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
+
+        {{!-- pagination --}}
         <div class="col-md-3"></div>
         <div class="col-md-9">
-            <div class="women-pagination col-md-12">
+            <div class="pagination col-md-12">
                 <ul class="page-list">
                     <li class="page"><a href="">&lt;&lt;</a></li>
                     {{#each pages}}
@@ -105,7 +108,7 @@
             </div>
 
         </div>
-        <div id="women-current-page" style="display: none;" name={{currentPage}}></div>
+        <div id="current-page" style="display: none;" name={{currentPage}}></div>
     </div>
 </div>
 <!--product end here-->
