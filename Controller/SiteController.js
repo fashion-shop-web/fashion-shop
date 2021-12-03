@@ -5,9 +5,15 @@ class SiteController {
         res.render('contact');
     }
 
+    logoutPage(req, res) {
+        req.logout();
+        res.redirect('/');
+    }
+
     //[GET] login page /login
     loginPage(req, res) {
-        res.render('login');
+        const wrongLogin = req.query['wrong-login'] !== undefined;
+        res.render('login', {wrongLogin});
     }
 
     //[GET] signup page /signup

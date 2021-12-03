@@ -1,0 +1,33 @@
+
+const passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+
+const userService =require('../services/userService');
+
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+},
+  async function(email, password, done) 
+  {
+    const user = await userService.FindByEmail(email);
+    if (!user)
+    {
+        return done(null, false, { message: 'Incorrect email.' });
+    }
+    if (!userService.validPassword(password, user)) {
+        return done(null, false, { message: 'Incorrect password.' });
+    }
+      return done(null, user);
+    }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, {id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, address: user.address, number: user.number});
+});
+
+passport.deserializeUser(async function(user, done) {
+    done(null, user);
+});
+
+module.exports = passport;
