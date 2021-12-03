@@ -48,7 +48,7 @@ a:hover {
     float: right;
     width:30%;
 }
-.search input.serch {
+.search input#serch {
     font-size: 0.85em;
     color: #000;
     width: 100%;

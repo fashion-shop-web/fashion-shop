@@ -51,6 +51,16 @@ class ProductController {
             console.log(err);
         }
     }
+
+    //[GET] search product list
+    async searchList(req, res) {
+        try {
+            const [products, pages] = await myService.searchProduct(req.query.name, req.query.page || 1);
+            res.render('product/search', { products, pages, currentPage: req.query.page || 1 });
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 module.exports = new ProductController;
