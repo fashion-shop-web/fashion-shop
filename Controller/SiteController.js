@@ -1,3 +1,5 @@
+const userService = require('../services/userService');
+
 class SiteController {
 
     //[GET] contact page /contact
@@ -18,7 +20,28 @@ class SiteController {
 
     //[GET] signup page /signup
     signupPage(req, res) {
-        res.render('signup');
+        const emailExisted = req.query['email-existed'] !== undefined;
+        const passwordNotMatch = req.query['password-not-match'] !== undefined;
+        res.render('signup', {emailExisted, passwordNotMatch});
+    }
+
+    async register (req, res) {
+        const {email, password, confirmPassword, firstName, lastName, number, address} = req.body;
+        const checkExists = await userService.FindByEmail(email);
+        if (checkExists) {
+            res.redirect('/signup?email-existed');
+        }
+        else
+        {
+            if (password === confirmPassword) {
+                const user = await userService.register(email, password, firstName, lastName, number, address);
+                res.redirect('/login');
+            }
+            else
+            {
+                res.redirect('/signup?password-not-match');
+            }
+        }
     }
 
     //[GET] load home page /

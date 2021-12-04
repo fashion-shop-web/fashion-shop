@@ -12,7 +12,7 @@ const user = new Schema({
     address: { type: String, maxlength: 100, required: true },
     number: { type: String, maxlength: 11, required: true },
     role: { type: Boolean, default: 0 }, //user/admin
-    status: { type: String, default: 0 }, //ban/unban
+    status: { type: Boolean, default: 0 }, //ban/unban
     cartId: { type: String },
 }, {
     timestamps: true

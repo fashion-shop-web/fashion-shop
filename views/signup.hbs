@@ -4,14 +4,20 @@
         <div class="signup-main">
             <h1>Sign up</h1>
             <h2>Informations</h2>
-            <form>
-                <input type="email" placeholder="E-mail" class="signup-one-line">
-                <input type="password" placeholder="Password" required="" class="signup-two-row" />
-                <input type="password" placeholder="Confirm Password" required="" class="no-margin signup-two-row" />
-                <input type="text" placeholder="First name" class="signup-two-row">
-                <input type="text" placeholder="Last name" class="signup-two-row no-margin">
-                <input type="text" placeholder="Phone numbers" class="signup-two-row">
-                <input type="text" placeholder="Full address" class="signup-two-row no-margin">
+            <form action="/signup" method="post">
+            {{#if emailExisted}}
+                <h4 style="color:red">Email's existed</h4>
+                                {{/if}}
+                <input type="email" name="email" placeholder="E-mail" class="signup-one-line">
+                {{#if passwordNotMatch}}
+                <h4 style="color:red">Password does not match</h4>
+                {{/if}}
+                <input type="password" name="password" placeholder="Password" required="" class="signup-two-row" />
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required="" class="no-margin signup-two-row" />
+                <input type="text" name="firstName" placeholder="First name" class="signup-two-row">
+                <input type="text" name="lastName" placeholder="Last name" class="signup-two-row no-margin">
+                <input type="text" name="number" placeholder="Phone numbers" class="signup-two-row">
+                <input type="text" name="address" placeholder="Full address" class="signup-two-row no-margin">
                 <input type="submit" value="Submit">
             </form>
         </div>

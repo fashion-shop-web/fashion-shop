@@ -6,7 +6,9 @@ const passport = require('../utils/passport');
 
 
 router.get('/contact', siteController.contactPage);
+
 router.get('/signup', siteController.signupPage);
+router.post('/signup', siteController.register);
 
 router.get('/login', siteController.loginPage);
 router.post('/login', passport.authenticate('local', { successRedirect: '/',

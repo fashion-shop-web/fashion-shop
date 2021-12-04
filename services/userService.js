@@ -1,4 +1,5 @@
 const userModel = require('../models/user');
+const bcrypt = require('bcrypt')
 
 exports.FindByEmail = (email) => {
     return userModel.findOne({
@@ -7,5 +8,17 @@ exports.FindByEmail = (email) => {
 }
 
 exports.validPassword = (password, user) => {
-    return user.password === password;
+    return bcrypt.compare(password, user.password);
+}
+
+exports.register = async (email, password, firstName, lastName, number, address) => {
+    const hashPassword = await bcrypt.hash(password,10);
+    return userModel.create({
+        email: email,
+        password: hashPassword,
+        firstName: firstName,
+        lastName: lastName,
+        number: number,
+        address: address,
+    })
 }
