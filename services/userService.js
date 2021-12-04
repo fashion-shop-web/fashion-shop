@@ -20,5 +20,6 @@ exports.register = async (email, password, firstName, lastName, number, address)
         lastName: lastName,
         number: number,
         address: address,
+        status: false
     })
 }

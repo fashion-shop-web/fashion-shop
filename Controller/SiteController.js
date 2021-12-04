@@ -15,7 +15,8 @@ class SiteController {
     //[GET] login page /login
     loginPage(req, res) {
         const wrongLogin = req.query['wrong-login'] !== undefined;
-        res.render('login', {wrongLogin});
+        const bannedLogin = req.query['banned'] !== undefined;
+        res.render('login', {wrongLogin, bannedLogin});
     }
 
     //[GET] signup page /signup

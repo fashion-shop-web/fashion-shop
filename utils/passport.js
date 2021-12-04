@@ -24,7 +24,7 @@ passport.use(new LocalStrategy({
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, {firstName: user.firstName, lastName: user.lastName, email: user.email, address: user.address, number: user.number});
+  done(null, {firstName: user.firstName, lastName: user.lastName, email: user.email, address: user.address, number: user.number, status: user.status});
 });
 
 passport.deserializeUser(async function(user, done) {
