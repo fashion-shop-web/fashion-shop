@@ -1836,7 +1836,7 @@ span.glyphicon.glyphicon-envelope {
 .myaccount-main .myaccount-two-row {
     font-size: 1em;
     color: #000;
-    width: 48%;
+    width: 100%;
     padding: 0.4em 0.5em;
     display: inline-block;
     border-bottom: 1px solid #ccc;
@@ -1871,7 +1871,6 @@ span.glyphicon.glyphicon-envelope {
     border: none;
     outline: none;
     float: right;
-    margin-top: 2em;
     margin-bottom: 3em;
 }
 .myaccount-main input[type="submit"]:hover {
@@ -1944,8 +1943,7 @@ span.glyphicon.glyphicon-envelope {
     background:#EA552B;
     border: none;
     outline: none;
-    float: right;
-    margin-top: 2em;
+    float: right;   
     margin-bottom: 3em;
 }
 .password-main input[type="submit"]:hover {

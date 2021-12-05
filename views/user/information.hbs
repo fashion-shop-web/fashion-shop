@@ -3,39 +3,52 @@
         <div class="myaccount-main">
             <h1>My account</h1>
             <h2>Update information</h2>
-            <form action="/">
+            <form action="/user/{{user._id}}" method="POST" id="form-update-user">
                 <div class="row">
                     <div class="col-md-12">
                         <label for="email-name-update" style="margin: 0 0;">Email</label>
-                        <input id="email-name-update" type="email" placeholder="E-mail" class="myaccount-one-line"
-                            value="{{user.email}}">
+                        <input id="email-name-update" type="email" placeholder="E-mail" class="myaccount-one-line" {{#if
+                            newinfo}}value="{{newinfo.email}}" {{else}}value="{{user.email}}" {{/if}} name="email">
                     </div>
 
                     <div class="col-md-6">
                         <label style="display:block" for="first-name-update">First name</label>
                         <input id="first-name-update" type="text" placeholder="First name"
-                            class="myaccount-two-row no-margin" value="{{user.firstName}}">
+                            class="myaccount-two-row no-margin" {{#if newinfo}}value="{{newinfo.firstName}}"
+                            {{else}}value="{{user.firstName}}" {{/if}} name="firstName">
                     </div>
 
                     <div class="col-md-6">
                         <label style="display:block" for="last-name-update">Last name</label>
                         <input id="last-name-update" type="text" placeholder="Last name"
-                            class="myaccount-two-row no-margin" value="{{user.lastName}}">
+                            class="myaccount-two-row no-margin" {{#if newinfo}}value="{{newinfo.lastName}}"
+                            {{else}}value="{{user.lastName}}" {{/if}} name="lastName">
                     </div>
 
                     <div class="col-md-6">
                         <label style="display:block" for="address-update">Address</label>
                         <input id="address-update" type="text" placeholder="Full address"
-                            class="myaccount-two-row no-margin" value="{{user.address}}">
+                            class="myaccount-two-row no-margin" {{#if newinfo}}value="{{newinfo.address}}"
+                            {{else}}value="{{user.address}}" {{/if}} name="address">
                     </div>
 
                     <div class="col-md-6">
                         <label style="display:block" for="phone-number-update">Phone number</label>
                         <input id="phone-number-update" type="text" placeholder="Phone numbers"
-                            class="myaccount-two-row no-margin" value="{{user.number}}">
+                            class="myaccount-two-row no-margin" {{#if newinfo}}value="{{newinfo.number}}"
+                            {{else}}value="{{user.number}}" {{/if}} name="number" style="margin-bottom: 2em;">
                     </div>
                 </div>
-                <input type="submit" value="Save">
+
+                {{#if error}}
+                <div class="text-right" style="color: red;">Email has been used</div>
+                {{/if}}
+
+                {{#if newinfo}}
+                <div class="text-right" style="color: green;">Update success</div>
+                {{/if}}
+
+                <input type="submit" value="SAVE">
             </form>
         </div>
     </div>

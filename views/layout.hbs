@@ -94,7 +94,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="head-signin dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                 style="font-family: 'Oswald', sans-serif; text-decoration: none; color:black; font-size: 0.8em"><i
-                  class="hd-dign"></i>{{user.lastName}}</a>
+                  class="hd-dign"></i>{{#if newinfo}}{{newinfo.lastName}} {{else}}{{user.lastName}} {{/if}}
+              </a>
               <ul class="dropdown-menu user-dropdown" style="min-width: 160px;">
                 <div class="row">
                   <div class="row-sm-3">

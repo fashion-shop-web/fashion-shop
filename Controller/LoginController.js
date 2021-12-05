@@ -1,4 +1,4 @@
-const userService = require('../services/userService');
+const userService = require('../services/loginService');
 
 class LoginController {
     //[GET] login page /login
