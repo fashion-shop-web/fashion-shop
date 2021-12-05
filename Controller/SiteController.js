@@ -23,7 +23,8 @@ class SiteController {
     signupPage(req, res) {
         const emailExisted = req.query['email-existed'] !== undefined;
         const passwordNotMatch = req.query['password-not-match'] !== undefined;
-        res.render('signup', {emailExisted, passwordNotMatch});
+        const passwordShort = req.query['password-short'] !== undefined;
+        res.render('signup', {emailExisted, passwordShort,passwordNotMatch});
     }
 
     async register (req, res) {
@@ -34,14 +35,20 @@ class SiteController {
         }
         else
         {
-            if (password === confirmPassword) {
-                const user = await userService.register(email, password, firstName, lastName, number, address);
-                res.redirect('/login');
+            if (password.length < 8) {
+                res.redirect('/signup?password-short');
             }
             else
             {
-                res.redirect('/signup?password-not-match');
-            }
+                if (password === confirmPassword) {
+                    const user = await userService.register(email, password, firstName, lastName, number, address);
+                    res.redirect('/login');
+                }
+                else
+                {
+                    res.redirect('/signup?password-not-match');
+                }
+            }      
         }
     }
 
