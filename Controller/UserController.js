@@ -22,9 +22,9 @@ class UserController {
         res.render('user/user');
     }
 
-    //[GET] cart page
-    checkOut(req, res) {
-        res.render('user/checkout');
+    logOut(req, res) {
+        req.logout();
+        res.redirect('/');
     }
 }
 

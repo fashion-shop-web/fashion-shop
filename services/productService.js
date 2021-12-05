@@ -1,5 +1,42 @@
 const product = require('../models/product');
 
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+const homeProduct = async () => {
+    try {
+        let products = await product.find({}).lean();
+
+        shuffle(products);
+        products = products.slice(0, 4);
+        products = products.map(item => {
+            let name = item.name.length < 25 ? item.name : (item.name.substring(0, 25) + '.....')
+            let slug = "/product/" + item.slug
+            let sale = item.sale !== 0 ? item.sale + '%' : 'No promotion'
+            return { ...item, name: name, slug: slug, sale: sale }
+        })
+
+        return products;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 const adjustList = async (gender, reqPage) => {
     let products = [];
     let pages = [];
@@ -47,6 +84,7 @@ const adjustDetail = async (slug) => {
             detail.sale = Math.ceil(detail.price - (detail.price * detail.sale / 100));
         }
 
+        shuffle(relate);
         relate = relate.slice(0, 4);
         relate = relate.map(item => {
             let name = item.name.length < 30 ? item.name : (item.name.substring(0, 30) + '.....')
@@ -175,5 +213,5 @@ module.exports = {
     getAll,
     getSale,
     searchProduct,
-
+    homeProduct
 }

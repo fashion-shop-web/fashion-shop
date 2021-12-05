@@ -3,12 +3,38 @@
         <div class="myaccount-main">
             <h1>My account</h1>
             <h2>Update information</h2>
-            <form>
-                <input type="email" placeholder="E-mail" class="myaccount-one-line" value="{{user.email}}">
-                <input type="text" placeholder="First name" class="myaccount-two-row" value="{{user.firstName}}">
-                <input type="text" placeholder="Last name" class="myaccount-two-row no-margin" value="{{user.lastName}}">
-                <input type="text" placeholder="Phone numbers" class="myaccount-two-row" value="{{user.number}}">
-                <input type="text" placeholder="Full address" class="myaccount-two-row no-margin" value="{{user.address}}">
+            <form action="/">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="email-name-update" style="margin: 0 0;">Email</label>
+                        <input id="email-name-update" type="email" placeholder="E-mail" class="myaccount-one-line"
+                            value="{{user.email}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label style="display:block" for="first-name-update">First name</label>
+                        <input id="first-name-update" type="text" placeholder="First name"
+                            class="myaccount-two-row no-margin" value="{{user.firstName}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label style="display:block" for="last-name-update">Last name</label>
+                        <input id="last-name-update" type="text" placeholder="Last name"
+                            class="myaccount-two-row no-margin" value="{{user.lastName}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label style="display:block" for="address-update">Address</label>
+                        <input id="address-update" type="text" placeholder="Full address"
+                            class="myaccount-two-row no-margin" value="{{user.address}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label style="display:block" for="phone-number-update">Phone number</label>
+                        <input id="phone-number-update" type="text" placeholder="Phone numbers"
+                            class="myaccount-two-row no-margin" value="{{user.number}}">
+                    </div>
+                </div>
                 <input type="submit" value="Save">
             </form>
         </div>

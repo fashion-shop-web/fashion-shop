@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 onblur="if (this.value == '') {this.value = 'Search';}" />
             </div>
             <div class="cart box_1" style="margin-top: 15px;">
-              <a href="/user/checkout">
+              <a href="/checkout">
                 <h3>
                   <img src="/images/cart.png" alt="" />
                   <div class="total">
@@ -103,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <li><a href="/user/password">Change password</a></li>
                       <li><a href="/user/arriving">Arriving (3)</a></li>
                       <li><a href="/user/history">History</a></li>
-                      <li><a href="/logout">Log out <span class="glyphicon glyphicon-log-in" aria-hidden="true"
+                      <li><a href="/user/logout">Log out <span class="glyphicon glyphicon-log-in" aria-hidden="true"
                             style="padding-left: 8px"></span></a>
                       </li>
                     </ul>
@@ -112,11 +112,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </ul>
             </div>
             {{else}}
-            <a href="/login" class="dropdown-toggle"
-                style="font-family: 'Oswald', sans-serif; text-decoration: none; color:black; font-size: 0.8em"><i
-                  class="hd-dign"></i>Sign in</a>
+            <a href="/login" class="head-signin dropdown" id="sign-in-text"></i>Sign in</a>
             {{/if}}
-            
+
             <div class="clearfix"> </div>
           </div>
         </div>

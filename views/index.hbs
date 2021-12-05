@@ -10,10 +10,6 @@
                 <h2>Handbags</h2>
                 <h1>Sed perspiciatis unde</h1>
                 <h5 class="item_price">$200.00</h5>
-                <ul class="bann-small-img">
-                    <li><a href="/product"><img src="/images/b1.jpg"></a></li>
-                    <li><a href="/product"><img src="/images/b2.jpg"></a></li>
-                </ul>
                 <h6>Size Charts</h6>
                 <ul class="bann-btns">
                     <li><select class="bann-size">
@@ -78,62 +74,25 @@
 <div class="home-block">
     <div class="container">
         <div class="home-block-main">
+            {{#each products}}
             <div class="col-md-3 home-grid">
                 <div class="home-product-main">
                     <div class="home-product-top">
-                        <a href="/product"><img src="/images/h1.jpg" alt="" class="img-responsive zoom-img"></a>
+                        <a href={{this.slug}}><img src={{this.image.[0].secure_url}} alt={{this.name}}
+                                class="img-responsive zoom-img"></a>
                     </div>
                     <div class="home-product-bottom">
-                        <h3><a href="/product">Smart Shopping</a></h3>
-                        <p>Explore Now</p>
+                        <h3 style="height: 3em; text-transform: uppercase;"><a href={{this.slug}}>{{this.name}}</a>
+                        </h3>
+                        <p style="color: black; font-size: 1.3em">Price: {{this.price}}$</p>
                     </div>
                     <div class="srch">
-                        <span>$200</span>
+                        <span>{{this.sale}}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 home-grid">
-                <div class="home-product-main">
-                    <div class="home-product-top">
-                        <a href="/product"><img src="/images/h2.jpg" alt="" class="img-responsive zoom-img"></a>
-                    </div>
-                    <div class="home-product-bottom">
-                        <h3><a href="/product">Smart Shopping</a></h3>
-                        <p>Explore Now</p>
-                    </div>
-                    <div class="srch">
-                        <span>$250</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 home-grid">
-                <div class="home-product-main">
-                    <div class="home-product-top">
-                        <a href="/product"><img src="/images/h3.jpg" alt="" class="img-responsive zoom-img"></a>
-                    </div>
-                    <div class="home-product-bottom">
-                        <h3><a href="/product">Smart Shopping</a></h3>
-                        <p>Explore Now</p>
-                    </div>
-                    <div class="srch">
-                        <span>$150</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 home-grid">
-                <div class="home-product-main">
-                    <div class="home-product-top">
-                        <a href="/product"><img src="/images/h4.jpg" alt="" class="img-responsive zoom-img"></a>
-                    </div>
-                    <div class="home-product-bottom">
-                        <h3><a href="/product">Smart Shopping</a></h3>
-                        <p>Explore Now</p>
-                    </div>
-                    <div class="srch">
-                        <span>$200</span>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
+
             <div class="clearfix"> </div>
         </div>
     </div>

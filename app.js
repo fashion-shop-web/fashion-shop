@@ -19,14 +19,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(require('express-session')({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function (req, res, next) {
-    res.locals.user = req.user;
-    next()
-  })
+  res.locals.user = req.user;
+  next()
+})
 
 app.use(express.static(path.join(__dirname, 'public')));
 

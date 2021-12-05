@@ -1577,8 +1577,7 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
     background:#EA552B;
     border: none;
     outline: none;
-        float: right;
-    margin-top: 2em;
+    float: right;
     margin-bottom: 3em;
 }
 .signup-main input[type="submit"]:hover {
@@ -1668,6 +1667,16 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
 }
 .login-right a:hover {
     background:#847057;
+}
+
+#sign-in-text:hover {
+    opacity: 0.3;
+}
+
+#sign-in-text {
+    font-family: 'Oswald', sans-serif; 
+    color:black; 
+    font-size: 0.9em;
 }
 
 /*--login end here--*/
@@ -1808,7 +1817,7 @@ span.glyphicon.glyphicon-envelope {
 
 /* update information start here*/
 .my-account {
-    padding: 6em 0em;
+    font-size: 1.2em;
 }
 .myaccount-main h1{
     font-size: 2em;
@@ -1835,8 +1844,12 @@ span.glyphicon.glyphicon-envelope {
     border-left: none;
     border-right: none;
     outline: none;
-    margin: 1em 2.5em 1em 0em;
 }
+
+.myaccount-main label{
+    margin-top: 2em;
+}
+
 .myaccount-main .myaccount-one-line {
     font-size: 1em;
     color: #000;
@@ -1848,14 +1861,8 @@ span.glyphicon.glyphicon-envelope {
     border-left: none;
     border-right: none;
     outline: none;
-    margin: 1em 2.5em 1em 0em;
 }
-.myaccount-main input.no-margin {
-    margin: 0px;
-}
-.myaccount-main input.no-margin {
-    margin: 0px;
-}
+
 .myaccount-main input[type="submit"] {
     font-size: 1em;
     color: #fff;
@@ -1881,8 +1888,22 @@ span.glyphicon.glyphicon-envelope {
     padding: 6em 0em;
 }
 .my-password .password-main {
-    margin: 0 20em;
+    padding: 1em 20em;
 } 
+
+@media (max-width: 990px) {
+    .my-password .password-main {
+        padding: 1em 10em;
+    } 
+}
+
+@media (max-width: 600px) {
+    .my-password .password-main {
+        padding: 0;
+    } 
+}
+
+
 .password-main h1{
     font-size: 2em;
     color:#EA572D;

@@ -1,6 +1,8 @@
 const productRouter = require('../routes/product');
 const userRouter = require('../routes/user');
 const siteRouter = require('../routes/site');
+const loginRouter = require('./login');
+const loginGaurd = require('../utils/loginGaurd');
 
 
 function route(app) {
@@ -8,7 +10,10 @@ function route(app) {
   app.use('/product', productRouter);
 
   //user
-  app.use('/user', userRouter);
+  app.use('/user', loginGaurd.LoginGaurd, userRouter);
+
+  //loggin page
+  app.use('/login', loginGaurd.LoginedGaurd, loginRouter);
 
   // site page
   app.use('/', siteRouter);
