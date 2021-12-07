@@ -31,6 +31,8 @@ a:hover {
 /*--header start here--*/
 #sign-in-text {
     color: black;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9em;
 }
 #sign-in-text:hover {
     opacity: 0.5;
