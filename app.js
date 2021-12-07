@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const route = require('./routes');
 
-const session = require("express-session");
+// const session = require("express-session");
 const passport = require('./utils/passport');
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(passport.session());
 
 app.use(function (req, res, next) {
   res.locals.user = req.user;
-  next()
+  next();
 })
 
 app.use(express.static(path.join(__dirname, 'public')));

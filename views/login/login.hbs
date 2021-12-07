@@ -1,0 +1,31 @@
+<!--log in start here-->
+<div class="login">
+    <div class="container">
+        <div class="login-main">
+            <h1>Login</h1>
+            <div class="col-md-12 login-left">
+                <h2>Existing User</h2>
+                <form action="/login" method="post">
+                    <input type="email" name="email" placeholder="Email" required="">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <div style="margin-bottom: 1em; text-align: right;"><a href="">Forget your password?</a></div>
+
+                    {{#if wrongLogin}}
+                    <h4 style="color:red; text-align: right;">Wrong password or email</h4>
+                    {{/if}}
+                    {{#if bannedLogin}}
+                    <h4 style="color:red; text-align: right;">Account is being banned</h4>
+                    {{/if}}
+                    <div style="float: right;"> <input type="submit" value="Login"></div>
+                    <div class="clearfix"> </div>
+                </form>
+
+                <div style="text-align: center; margin-top: 2em;">Or you can <a href="/login/signup">create a new
+                        account</a></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!--log in end here-->

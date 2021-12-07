@@ -1,0 +1,47 @@
+<!--sign in start here-->
+<div class="sign-up">
+    <div class="container">
+        <div class="signup-main">
+            <h1>Sign up</h1>
+            <h2>Informations</h2>
+            <form action="/login/signup" method="POST">
+                <div class="col-md-12"><input type="email" name="email" placeholder="E-mail" class="signup-one-line">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="password" name="password" placeholder="Password" required="" class="signup-two-row" />
+                    <input type="text" name="firstName" placeholder="First name" class="signup-two-row">
+                    <input type="text" name="number" placeholder="Phone numbers" class="signup-two-row">
+                </div>
+
+                <div class="col-md-6">
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required=""
+                        class="signup-two-row" />
+
+                    <input type="text" name="lastName" placeholder="Last name" class="signup-two-row">
+
+                    <input type="text" name="address" placeholder="Full address" class="signup-two-row"
+                        style="margin-bottom: 3em;">
+
+                </div>
+
+
+                {{#if emailExisted}}
+                <h4 style="color:red; text-align:right; margin-top: 1em;">Email has already been used</h4>
+                {{/if}}
+
+                {{#if passwordShort}}
+                <h4 style="color:red; text-align:right; margin-top: 1em;">Password must contain at least 8 characters)
+                </h4>
+                {{/if}}
+                {{#if passwordNotMatch}}
+                <h4 style="color:red; text-align:right; margin-top: 1em;">Password does not match</h4>
+                {{/if}}
+
+                <div class="clearfix"> </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+<!--sign in end here-->

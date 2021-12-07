@@ -29,6 +29,12 @@ a:hover {
 }
 
 /*--header start here--*/
+#sign-in-text {
+    color: black;
+}
+#sign-in-text:hover {
+    opacity: 0.5;
+}
 .header {
     padding: 1em 0em;
 }
@@ -1541,7 +1547,7 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
 .signup-main .signup-two-row {
     font-size: 1em;
     color: #000;
-    width: 48%;
+    width: 100%;
     padding: 0.4em 0.5em;
     display: inline-block;
     border-bottom: 1px solid #ccc;
@@ -1590,7 +1596,10 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
 /*--signup end here--*/
 /*--login strat here--*/
 .login {
-    padding: 6em 0em;
+    padding: 3em 0em;
+}
+.login-left {
+    padding: 0 20em;
 }
 .login-main h1 {
     font-size: 2.5em;
@@ -1642,41 +1651,6 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
 }
 .login-left input[type="submit"]:hover {
 	  background:#847057;
-}
-.login-right h3 {
-    font-size: 1.5em;
-    color: #847057;
-    font-family: 'Oswald', sans-serif;
-    margin-bottom: 1em;
-}
-.login-right p {
-    font-size: 1em;
-    line-height: 1.8em;
-    color: #999;
-    margin-bottom: 1em;
-}
-.login-right a {
-    font-size: 1em;
-    color: #fff;
-    background:#EA572D;
-    padding: 0.5em 1em;
-    display: block;
-    width: 30%;
-    text-align: center;
-    margin: 2em 0em 0em 0em;
-}
-.login-right a:hover {
-    background:#847057;
-}
-
-#sign-in-text:hover {
-    opacity: 0.3;
-}
-
-#sign-in-text {
-    font-family: 'Oswald', sans-serif; 
-    color:black; 
-    font-size: 0.9em;
 }
 
 /*--login end here--*/
@@ -1836,7 +1810,7 @@ span.glyphicon.glyphicon-envelope {
 .myaccount-main .myaccount-two-row {
     font-size: 1em;
     color: #000;
-    width: 48%;
+    width: 100%;
     padding: 0.4em 0.5em;
     display: inline-block;
     border-bottom: 1px solid #ccc;
@@ -1871,7 +1845,6 @@ span.glyphicon.glyphicon-envelope {
     border: none;
     outline: none;
     float: right;
-    margin-top: 2em;
     margin-bottom: 3em;
 }
 .myaccount-main input[type="submit"]:hover {
@@ -1891,16 +1864,26 @@ span.glyphicon.glyphicon-envelope {
     padding: 1em 20em;
 } 
 
+}
+
 @media (max-width: 990px) {
     .my-password .password-main {
         padding: 1em 10em;
     } 
+
+    .login-left {
+        padding: 0 10em;
+    }
 }
 
 @media (max-width: 600px) {
     .my-password .password-main {
         padding: 0;
     } 
+
+    .login-left {
+        padding: 0 5em;
+    }
 }
 
 
@@ -1944,8 +1927,7 @@ span.glyphicon.glyphicon-envelope {
     background:#EA552B;
     border: none;
     outline: none;
-    float: right;
-    margin-top: 2em;
+    float: right;   
     margin-bottom: 3em;
 }
 .password-main input[type="submit"]:hover {
@@ -2104,6 +2086,29 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
 }
 /* arriving end here */
 
+/* verify start here */
+.verify {
+    min-height: 26.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.verify .verify-container {
+    padding: 7em 20em; background-color: #ea562dda; color: white;
+}
+
+.verify .verify-container h1{
+    text-align: center; 
+    font-size: 3em;
+}
+
+.verify .verify-container p {
+    font-size: 1.5em;
+}
+
+/* verify end here */
+
 /*--meadia quiries start here--*/
 @media(max-width:1600px){
 	
@@ -2118,6 +2123,21 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
 	
 }
 @media(max-width:1024px){
+.verify {
+    min-height: 20em;
+
+}
+.verify .verify-container {
+    padding: 5em 15em; 
+
+}
+.verify .verify-container h1{
+    font-size: 2em;
+}
+.verify .verify-container p {
+    font-size: 1em;
+}
+    
 .blc-layer2-left {
     margin-top: 8em;
 }
@@ -2384,6 +2404,15 @@ h3.typo1 {
 }
 }
 @media(max-width:765px){
+.verify {
+    min-height: 20em;
+
+}
+.verify .verify-container {
+    padding: 5em 10em; 
+
+}
+    
 .navbar-toggle {
     float: none;
     margin-top: 8px;
@@ -2408,6 +2437,20 @@ h3.typo1 {
 }
 }
 @media(max-width:640px){
+.verify {
+    min-height: 20em;
+
+}
+.verify .verify-container {
+    padding: 5em 7em; 
+
+}
+.verify .verify-container h1{
+    font-size: 2em;
+}
+.verify .verify-container p {
+    font-size: 1em;
+}
 
 .top-nav {
     width: 35%;

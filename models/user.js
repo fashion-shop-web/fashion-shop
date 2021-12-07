@@ -11,9 +11,11 @@ const user = new Schema({
     password: { type: String, required: true },
     address: { type: String, maxlength: 100, required: true },
     number: { type: String, maxlength: 11, required: true },
-    role: { type: Boolean, default: 0 }, //user/admin
-    status: { type: Boolean, default: 0 }, //ban/unban
+    role: { type: Boolean, default: false }, //user/admin
+    status: { type: Boolean, default: false }, //ban/unban
     cartId: { type: String },
+    emailToken: { type: String },
+    active: { type: Boolean, default: false },
 }, {
     timestamps: true
 });
