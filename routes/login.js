@@ -12,6 +12,10 @@ router.post('/signup', loginController.register);
 router.get('/verify/:emailToken', loginController.activeNewAccount)
 router.get('/verify', loginController.verifyPage);
 
+//forget password
+router.get('/forget', loginController.forgetPasswordPage)
+router.post('/forget', loginController.sendNewPassword);
+
 router.get('/', loginController.loginPage);
 router.post('/', function (req, res, next) {
     passport.authenticate('local', function (err, user) {

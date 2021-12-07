@@ -50,6 +50,16 @@ class LoginController {
         await loginService.activeNewAccount(emailToken);
         res.redirect('/login');
     }
+
+    forgetPasswordPage(req, res) {
+        res.render('login/forget');
+    }
+
+    async sendNewPassword(req, res) {
+        const { email } = req.body;
+        await loginService.sendNewPassword(email);
+        res.redirect('/login');
+    }
 }
 
 module.exports = new LoginController;

@@ -58,3 +58,29 @@ exports.activeNewAccount = async (emailToken) => {
         await account.save();
     }
 }
+
+exports.sendNewPassword = async (email) => {
+    const account = await userModel.findOne({ email: email });
+
+    if (account) {
+        const newPass = (Math.random() + 1).toString(36).substring(2);
+        account.password = await bcrypt.hash(newPass, salt);
+
+        const mailOption = {
+            from: process.env.SHOP_GMAIL_USERNAME,
+            to: email,
+            subject: 'Forget password',
+            html: `<div style="background-color: #ea562dda; padding: 2em 2em;">
+                        <h1 style="text-align: center;">This is your new password</h1>
+                        <h4 style="text-align: center;">${newPass}</h4>
+                    </div>`
+        }
+
+        transporter.sendMail(mailOption, function (err, info) {
+            if (err) console.log(err);
+            else res.redirect('/verify');
+        })
+
+        await account.save();
+    }
+}

@@ -1596,6 +1596,10 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
   -o-transition: 0.5s all;
 }
 /*--signup end here--*/
+/* forget password */
+.forget .container {
+    padding: 5em 0;
+}
 /*--login strat here--*/
 .login {
     padding: 3em 0em;
@@ -1866,6 +1870,10 @@ span.glyphicon.glyphicon-envelope {
     padding: 1em 20em;
 } 
 
+@media (max-width: 1000px) {
+    .forget .container {
+        padding: 5em 0;
+    }
 }
 
 @media (max-width: 990px) {

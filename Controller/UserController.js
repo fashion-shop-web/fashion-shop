@@ -46,6 +46,7 @@ class UserController {
 
     async storeNewPass(req, res) {
         const valid = await userService.validateChangePass(req.params.id, req.body);
+        console.log(valid);
         if (valid === 1) {
             res.render('user/password', { message: "Wrong current password" });
         } else if (valid === 2) {
