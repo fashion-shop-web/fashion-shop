@@ -2,19 +2,12 @@ const product = require('../models/product');
 
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
-
-    // While there remain elements to shuffle...
     while (currentIndex != 0) {
-
-        // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-
-        // And swap it with the current element.
         [array[currentIndex], array[randomIndex]] = [
             array[randomIndex], array[currentIndex]];
     }
-
     return array;
 }
 
@@ -35,41 +28,6 @@ const homeProduct = async () => {
     } catch (err) {
         console.log(err);
     }
-}
-
-const adjustList = async (gender, reqPage) => {
-    let products = [];
-    let pages = [];
-
-    try {
-        products = await product.find({ gender: gender }).lean();
-        const perPage = 6;
-        const page = parseInt(reqPage);
-
-        const start = (page - 1) * perPage;
-        const end = page * perPage;
-        for (let i = 0; i < products.length / perPage; i++) {
-            let temp = {};
-            temp.page = i + 1;
-            temp.pageA = `?page=${i + 1}`;
-            pages.push(temp);
-        }
-        products = products.slice(start, end);
-
-        products = products.map(item => {
-            let name = item.name.length < 28 ? item.name : (item.name.substring(0, 28) + '.....')
-            let slug = "/product/" + item.slug
-            let sale = item.sale !== 0 ? item.sale + '%' : 'No promotion';
-            return { ...item, name: name, slug: slug, sale: sale }
-        })
-
-
-        return [products, pages];
-    } catch (error) {
-        console.log(error)
-    }
-
-    return [products, pages];
 }
 
 const adjustDetail = async (slug) => {
@@ -100,12 +58,41 @@ const adjustDetail = async (slug) => {
     return [detail, relate];
 }
 
-const getAll = async (reqPage) => {
+const getListProduct = async (reqPage, filter, option) => {
     let products = [];
     let pages = [];
+    let sort = {};
+    let querySort = '';
 
     try {
-        products = await product.find({}).lean();
+        if (Object.keys(filter).length !== 0) [products, sort, querySort] = await SortProduct(filter, option);
+        else {
+            sort.AllAccessories = true;
+            sort.AllBrands = true;
+            sort['0s'] = true;
+            querySort += '&AllAccessories=on&AllBrands=on&radioSale=0';
+
+            switch (option) {
+                case 'all': {
+                    products = await product.find({}).lean();
+                    break;
+                }
+                case 'men': {
+                    products = await product.find({ gender: false }).lean();
+                    break;
+                }
+                case 'women': {
+                    products = await product.find({ gender: true }).lean();
+                    break;
+                }
+                case 'sale': {
+                    products = await product.find({ sale: { $gt: 0 } }).lean();
+                    break;
+                }
+                default: throw new Error('invalid option get product')
+            };
+        }
+
         const perPage = 6;
         const page = parseInt(reqPage);
 
@@ -114,7 +101,7 @@ const getAll = async (reqPage) => {
         for (let i = 0; i < products.length / perPage; i++) {
             let temp = {};
             temp.page = i + 1;
-            temp.pageA = `?page=${i + 1}`;
+            temp.pageA = `?page=${i + 1}` + querySort;
             pages.push(temp);
         }
         products = products.slice(start, end);
@@ -126,49 +113,126 @@ const getAll = async (reqPage) => {
             return { ...item, name: name, slug: slug, sale: sale }
         })
 
-
-        return [products, pages];
+        return [products, pages, sort];
     } catch (error) {
         console.log(error)
     }
-
-    return [products, pages];
 }
 
-const getSale = async (reqPage) => {
+const SortProduct = async (filter, option) => {
+    const category = [];
+    const brand = [];
+    let sale = 0;
     let products = [];
-    let pages = [];
+    const sort = {};
+    let querySort = '&';
 
-    try {
-        products = await product.find({}).lean();
-        products = products.filter(item => item.sale != 0);
-        const perPage = 6;
-        const page = parseInt(reqPage);
-
-        const start = (page - 1) * perPage;
-        const end = page * perPage;
-        for (let i = 0; i < products.length / perPage; i++) {
-            let temp = {};
-            temp.page = i + 1;
-            temp.pageA = `?page=${i + 1}`;
-            pages.push(temp);
+    for (const item in filter) {
+        if (item === 'Handbag' || item === 'Bracelet' || item === 'Wrist watch') {
+            category.push(item);
+            sort[item.replace(' ', '')] = true;
+            querySort += `${item.replace(' ', '+')}=on&`
+        } else if (filter[item] === '10' || filter[item] === '20' || filter[item] === '30' || filter[item] === '40' || filter[item] === '50' || filter[item] === '0') {
+            sale = filter[item];
+            sort[filter[item] + 's'] = true;
+            querySort += `radioSale=${filter[item]}&`
+        } else if (item !== 'AllAccessories' && item !== 'AllBrands' && item != 'page') {
+            brand.push(item);
+            sort[item.replace(' ', '')] = true;
+            querySort += `${item.replace(' ', '+')}=on&`
         }
-        products = products.slice(start, end);
-
-        products = products.map(item => {
-            let name = item.name.length < 28 ? item.name : (item.name.substring(0, 28) + '.....')
-            let slug = "/product/" + item.slug
-            let sale = item.sale !== 0 ? item.sale + '%' : 'No promotion';
-            return { ...item, name: name, slug: slug, sale: sale }
-        })
-
-
-        return [products, pages];
-    } catch (error) {
-        console.log(error)
     }
 
-    return [products, pages];
+    let isCategory = true;
+    let isBrand = true;
+
+    if (category.length === 0) {
+        isCategory = false;
+        sort.AllAccessories = true;
+    }
+
+    if (brand.length === 0) {
+        isBrand = false;
+        sort.AllBrands = true;
+    }
+
+    if (Object.keys(filter).includes('AllAccessories')) {
+        isCategory = false;
+        sort.AllAccessories = true;
+    }
+    if (Object.keys(filter).includes('AllBrands')) {
+        isBrand = false;
+        sort.AllBrands = true;
+    }
+
+    switch (option) {
+        case 'all': {
+            if (isCategory) {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand }, category: { $in: category } }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, category: { $in: category } }).lean();
+                }
+            } else {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand } }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) } }).lean();
+                }
+            }
+            break;
+        }
+        case 'men': {
+            if (isCategory) {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand }, category: { $in: category }, gender: false }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, category: { $in: category }, gender: false }).lean();
+                }
+            } else {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand }, gender: false }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, gender: false }).lean();
+                }
+            }
+            break;
+        }
+        case 'women': {
+            if (isCategory) {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand }, category: { $in: category }, gender: true }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, category: { $in: category }, gender: true }).lean();
+                }
+            } else {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand }, gender: true }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, gender: true }).lean();
+                }
+                break;
+            }
+        }
+        case 'sale': {
+            if (isCategory) {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand }, category: { $in: category }, sale: { $gt: 0 } }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, category: { $in: category }, sale: { $gt: 0 } }).lean();
+                }
+            } else {
+                if (isBrand) {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, brand: { $in: brand }, sale: { $gt: 0 } }).lean();
+                } else {
+                    products = await product.find({ sale: { $gte: parseInt(sale) }, sale: { $gt: 0 } }).lean();
+                }
+                break;
+            }
+        }
+        default: throw new Error('invalid option');
+    }
+    return [products, sort, querySort];
 }
 
 const searchProduct = async (productName, reqPage) => {
@@ -208,10 +272,9 @@ const searchProduct = async (productName, reqPage) => {
 }
 
 module.exports = {
-    adjustList,
     adjustDetail,
-    getAll,
-    getSale,
+    getListProduct,
     searchProduct,
-    homeProduct
+    homeProduct,
+    SortProduct
 }

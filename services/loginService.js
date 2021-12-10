@@ -35,7 +35,6 @@ exports.register = async (email, password, firstName, lastName, number, address,
 
     transporter.sendMail(mailOption, function (err, info) {
         if (err) console.log(err);
-        else res.redirect('/verify');
     })
 
     await userModel.create({
@@ -78,7 +77,6 @@ exports.sendNewPassword = async (email) => {
 
         transporter.sendMail(mailOption, function (err, info) {
             if (err) console.log(err);
-            else res.redirect('/verify');
         })
 
         await account.save();

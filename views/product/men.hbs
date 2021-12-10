@@ -3,21 +3,23 @@
     <div class="container">
         <div class="product-main">
             <div class=" product-menu-bar">
-                <div class="col-md-3 prdt-right">
+                <form class="col-md-3 prdt-right">
                     <div class="w_sidebar">
                         <section class="sky-form">
                             <h1>Categories</h1>
                             <div class="row1 scroll-pane">
                                 <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All
+                                    <label class="checkbox"><input type="checkbox" name="AllAccessories" {{#if
+                                            sort.AllAccessories}} checked="" {{/if}}><i></i>All
                                         Accessories</label>
                                 </div>
                                 <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox"
-                                            name="checkbox"><i></i>Handbag</label>
-                                    <label class="checkbox"><input type="checkbox"
-                                            name="checkbox"><i></i>Bracelet</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Wrist
+                                    <label class="checkbox"><input type="checkbox" name="Handbag" name="checkbox" {{#if
+                                            sort.Handbag}} checked="" {{/if}}><i></i>Handbag</label>
+                                    <label class="checkbox"><input type="checkbox" name="Bracelet" name="checkbox" {{#if
+                                            sort.Bracelet}} checked="" {{/if}}><i></i>Bracelet</label>
+                                    <label class="checkbox"><input type="checkbox" name="Wrist watch" {{#if
+                                            sort.Wristwatch}} checked="" {{/if}}><i></i>Wrist
                                         watch</label>
                                 </div>
                             </div>
@@ -26,25 +28,37 @@
                             <h2>Brand</h2>
                             <div class="row1 row2 scroll-pane">
                                 <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All
+                                    <label class="checkbox"><input type="checkbox" name="AllBrands" {{#if
+                                            sort.AllBrands}} checked="" {{/if}}><i></i>All
                                         Brands</label>
                                 </div>
                                 <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Louis
-                                        Vutton</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Rolex</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Chanel</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Gucci</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Omega</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Hermes</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Dior</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Prada</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>YSL</label>
-                                    <label class="checkbox"><input type="checkbox"
-                                            name="checkbox"><i></i>Citizen</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Michael
+                                    <label class="checkbox"><input type="checkbox" name="Louis Vuitton" {{#if
+                                            sort.LouisVuitton}} checked="" {{/if}}><i></i>Louis
+                                        Vuitton</label>
+                                    <label class="checkbox"><input type="checkbox" name="Rolex" {{#if sort.Rolex}}
+                                            checked="" {{/if}}><i></i>Rolex</label>
+                                    <label class="checkbox"><input type="checkbox" name="Chanel" {{#if sort.Chanel}}
+                                            checked="" {{/if}}><i></i>Chanel</label>
+                                    <label class="checkbox"><input type="checkbox" name="Gucci" {{#if sort.Gucci}}
+                                            checked="" {{/if}}><i></i>Gucci</label>
+                                    <label class="checkbox"><input type="checkbox" name="Omega" {{#if sort.Omega}}
+                                            checked="" {{/if}}><i></i>Omega</label>
+                                    <label class="checkbox"><input type="checkbox" name="Hermes" {{#if sort.Hermes}}
+                                            checked="" {{/if}}><i></i>Hermes</label>
+                                    <label class="checkbox"><input type="checkbox" name="Dior" {{#if sort.Dior}}
+                                            checked="" {{/if}}><i></i>Dior</label>
+                                    <label class="checkbox"><input type="checkbox" name="Prada" {{#if sort.Prada}}
+                                            checked="" {{/if}}><i></i>Prada</label>
+                                    <label class="checkbox"><input type="checkbox" name="YSL" {{#if sort.YSL}}
+                                            checked="" {{/if}}><i></i>YSL</label>
+                                    <label class="checkbox"><input type="checkbox" name="Citizen" {{#if sort.Citizen}}
+                                            checked="" {{/if}}><i></i>Citizen</label>
+                                    <label class="checkbox"><input type="checkbox" name="Michael Kors" {{#if
+                                            sort.MichaelKors}} checked="" {{/if}}><i></i>Michael
                                         Kors</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fendi</label>
+                                    <label class="checkbox"><input type="checkbox" name="Fendi" {{#if sort.Fendi}}
+                                            checked="" {{/if}}><i></i>Fendi</label>
                                 </div>
                             </div>
                         </section>
@@ -52,25 +66,38 @@
                             <h4>discount</h4>
                             <div class="row1 row2 scroll-pane">
                                 <div class="col col-4">
-                                    <label class="radio"><input type="radio" name="radio"><i></i>50 % and
+                                    <label class="radio"><input type="radio" name="radioSale" value="50" {{#if
+                                            sort.50s}} checked="" {{/if}}><i></i>50 %
+                                        and
                                         above</label>
-                                    <label class="radio"><input type="radio" name="radio"><i></i>40 % and
+                                    <label class="radio"><input type="radio" name="radioSale" value="40" {{#if
+                                            sort.40s}} checked="" {{/if}}><i></i>40 %
+                                        and
                                         above</label>
                                 </div>
                                 <div class="col col-4">
-                                    <label class="radio"><input type="radio" name="radio"><i></i>30 % and
+                                    <label class="radio"><input type="radio" name="radioSale" value="30" {{#if
+                                            sort.30s}} checked="" {{/if}}><i></i>30 %
+                                        and
                                         above</label>
-                                    <label class="radio"><input type="radio" name="radio"><i></i>20 % and
+                                    <label class="radio"><input type="radio" name="radioSale" value="20" {{#if
+                                            sort.20s}} checked="" {{/if}}><i></i>20 %
+                                        and
                                         above</label>
-                                    <label class="radio"><input type="radio" name="radio"><i></i>10 % and
+                                    <label class="radio"><input type="radio" name="radioSale" value="10" {{#if
+                                            sort.10s}} checked="" {{/if}}><i></i>10 %
+                                        and
                                         above</label>
+                                    <label class="radio"><input type="radio" name="radioSale" value="0" {{#if sort.0s}}
+                                            checked="" {{/if}}><i></i>No promotion</label>
                                 </div>
                             </div>
                         </section>
                     </div>
-                    <button class="filter-button">Sort</button>
-                </div>
+                    <button class="filter-button" type="submit">Sort</button>
+                </form>
             </div>
+            {{#if products}}
             <div class="col-md-9 product-block">
                 {{#each products}}
                 <div class="col-md-4 home-grid">
@@ -92,9 +119,13 @@
                 {{/each}}
                 <div class="clearfix"> </div>
             </div>
+            {{else}}
+            <div class="col-md-9 product-block text-center">No product match your sort :(</div>
+            {{/if}}
         </div>
 
         {{!-- pagination --}}
+        {{#if products}}
         <div class="col-md-3"></div>
         <div class="col-md-9">
             <div class="pagination col-md-12">
@@ -109,6 +140,7 @@
 
         </div>
         <div id="current-page" style="display: none;" name={{currentPage}}></div>
+        {{/if}}
     </div>
 </div>
 <!--product end here-->
