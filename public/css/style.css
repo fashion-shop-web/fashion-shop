@@ -1409,6 +1409,13 @@ span.glyphicon.glyphicon-share-alt {
     font-weight: bold;
 }
 
+.comment-list .comment-section .comment-user-name .comment-user-time {
+    font-weight: normal;
+    margin-left: 0.5em;
+    color: rgb(80, 80, 80);
+    font-size: 0.9em;
+}
+
 /*--single page end here--*/
 /*--start-checkout--*/
 .ckeckout{

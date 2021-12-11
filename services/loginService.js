@@ -2,6 +2,8 @@ const userModel = require('../models/user');
 const bcrypt = require('bcrypt')
 const salt = 10;
 const transporter = require('../utils/nodemailer');
+const crypto = require('crypto');
+
 require('dotenv').config;
 
 exports.FindByEmail = (email) => {
@@ -21,7 +23,7 @@ exports.validateActive = (user) => {
 
 exports.register = async (email, password, firstName, lastName, number, address, host) => {
     const hashPassword = await bcrypt.hash(password, salt);
-    const emailToken = await bcrypt.hash(email, salt);
+    const emailToken = crypto.randomBytes(20).toString('hex');;
 
     const mailOption = {
         from: process.env.SHOP_GMAIL_USERNAME,
@@ -35,7 +37,6 @@ exports.register = async (email, password, firstName, lastName, number, address,
 
     transporter.sendMail(mailOption, function (err, info) {
         if (err) console.log(err);
-        else res.redirect('/verify');
     })
 
     await userModel.create({
@@ -54,7 +55,6 @@ exports.activeNewAccount = async (emailToken) => {
     if (account) {
         account.emailToken = null;
         account.active = true;
-
         await account.save();
     }
 }
@@ -78,7 +78,6 @@ exports.sendNewPassword = async (email) => {
 
         transporter.sendMail(mailOption, function (err, info) {
             if (err) console.log(err);
-            else res.redirect('/verify');
         })
 
         await account.save();

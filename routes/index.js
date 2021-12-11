@@ -2,6 +2,7 @@ const productRouter = require('../routes/product');
 const userRouter = require('../routes/user');
 const siteRouter = require('../routes/site');
 const loginRouter = require('./login');
+const apiRouter = require('./api');
 const loginGaurd = require('../utils/loginGaurd');
 
 
@@ -14,6 +15,9 @@ function route(app) {
 
   //loggin page
   app.use('/login', loginGaurd.LoginedGaurd, loginRouter);
+
+  //comment api
+  app.use('/api', loginGaurd.LoginGaurd, apiRouter);
 
   // site page
   app.use('/', siteRouter);

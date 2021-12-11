@@ -2,7 +2,7 @@ function LoginGaurd(req, res, next) {
     if (req.user) {
         next();
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 }
 
@@ -10,7 +10,7 @@ function LoginedGaurd(req, res, next) {
     if (!req.user) {
         next();
     } else {
-        res.redirect('/admin');
+        res.redirect('/');
     }
 }
 

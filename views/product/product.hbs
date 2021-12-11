@@ -64,27 +64,27 @@
 
                 <div class="comment-block">
                     <div class="comment-input">
-                        <div class="comment-title">Comment (3)</div>
-                        <div class="comment-user-name">Users</div>
-                        <textarea placeholder="Add a comment" class="comment-textarea"></textarea>
+                        <div class="comment-title">Comments ({{totalComment}})</div>
+                        {{#if user}}
+                        <div id="comment-user-id" hidden name={{user._id}}></div>
+                        <div id="comment-user-lastName" hidden name={{user.lastName}}></div>
+                        <div id="comment-product-id" hidden name={{detail._id}}></div>
+                        <textarea placeholder="Leave your comment here..." class="comment-textarea"
+                            onkeyup="requestCommentAPI(event)"></textarea>
+                        <div id="comment-error" style="color: red;"></div>
+                        {{/if}}
 
                     </div>
                     <ul class="comment-list">
+                        {{#each comments}}
                         <li class="comment-section">
-                            <div class="comment-user-name">Users</div>
-                            <div class="comment-user-content">hello from comment content</div>
+                            <div class="comment-user-name">{{this.lastName}} <i class="comment-user-time">(
+                                    {{this.date}} )</i></div>
+                            <div class="comment-user-content">{{this.content}}</div>
                             <hr />
                         </li>
-                        <li class="comment-section">
-                            <div class="comment-user-name">Users</div>
-                            <div class="comment-user-content">hello from comment content</div>
-                            <hr />
-                        </li>
-                        <li class="comment-section">
-                            <div class="comment-user-name">Users</div>
-                            <div class="comment-user-content">hello from comment content</div>
-                            <hr />
-                        </li>
+                        {{/each}}
+
                     </ul>
                 </div>
             </div>

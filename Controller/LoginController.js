@@ -1,4 +1,5 @@
 const loginService = require('../services/loginService');
+const passport = require('../utils/passport');
 
 class LoginController {
     //[GET] login page /login
@@ -6,6 +7,23 @@ class LoginController {
         const wrongLogin = req.query['wrong-login'] !== undefined;
         const bannedLogin = req.query['banned'] !== undefined;
         res.render('login/login', { wrongLogin, bannedLogin });
+    }
+
+    //authenticate
+    authenticate(req, res, next) {
+        passport.authenticate('local', function (err, user) {
+            if (err) return next(err);
+            //banned
+            if (user.status) return res.redirect('/login?banned');
+            //wrong password, email address
+            if (!user) return res.redirect('/login?wrong-login')
+            req.logIn(user, function (err) {
+                if (err) return next(err);
+                //success
+                return res.redirect('/');
+            })
+        })(req, res, next);
+
     }
 
     //[GET] signup page /signup
