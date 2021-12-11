@@ -1375,7 +1375,7 @@ span.glyphicon.glyphicon-share-alt {
 /* comment in single */
 .comment-block {
     margin: 0 15px;
-    background-color: rgb(224, 223, 223);
+    background-color: rgb(173, 153, 134);
 }
 
 .comment-block .comment-title {
@@ -1433,6 +1433,15 @@ span.glyphicon.glyphicon-share-alt {
     margin-left: 0.5em;
     color: rgb(80, 80, 80);
     font-size: 0.7em;
+}
+
+.product-detail-pagination .page-list .current-page a {
+    background-color: rgb(167, 157, 148);
+}
+
+.product-detail-pagination .page-list a:hover {
+    background-color: rgb(167, 157, 148);
+    color: white;
 }
 
 /*--single page end here--*/
