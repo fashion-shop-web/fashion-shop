@@ -35,7 +35,6 @@ const requestCommentAPI = (e) => {
                     const appendComment = `<li class="comment-section">
                     <div class="comment-user-name">${lastName}<i class="comment-user-time">( ${createDate} )</i></div>
                     <div class="comment-user-content">${newComment.content}</div>
-                    <hr>
                     </li>`
 
                     commentList.innerHTML = appendComment + commentList.innerHTML;

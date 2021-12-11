@@ -64,9 +64,10 @@ class ProductController {
 
     //[GET] detail product (will add slug)
     async showDetail(req, res) {
+        const page = req.query.page || 1;
         try {
-            const [detail, relate, comments] = await productService.adjustDetail(req.params.slug);
-            res.render('product/product', { detail, relate, comments, totalComment: comments.length });
+            const [detail, relate, comments, pages, len] = await productService.adjustDetail(req.params.slug, page);
+            res.render('product/product', { detail, relate, comments, len, pages, currentPage: page });
         } catch (err) {
             console.log(err);
         }

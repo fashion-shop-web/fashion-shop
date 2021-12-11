@@ -1378,6 +1378,10 @@ span.glyphicon.glyphicon-share-alt {
     background-color: rgb(224, 223, 223);
 }
 
+.comment-block .comment-title {
+    padding: 0.5em 0;
+}
+
 .comment-block .comment-input {
     margin: 0 10px;
 }
@@ -1393,27 +1397,42 @@ span.glyphicon.glyphicon-share-alt {
     margin-top: 5px;
     resize: none; 
     width: 95%;
-    height: 60px; 
+    height: 5em; 
     padding: 2px 5px;
+    border-radius: 3px;
+
+    -webkit-box-shadow: -8px 11px 41px 3px rgba(0,0,0,0.5); 
+    box-shadow: -8px 11px 41px 3px rgba(0,0,0,0.5);
 }
 
 .comment-list {
-    margin-top: 16px;
+    margin-top: 2em;
+    padding: 0;
 }
 
 .comment-list .comment-section {
     list-style-type: none;
+    border: 1px solid rgba(0, 0, 0, 0.575);
+    margin: 1.5em 3em;
+    padding: 0.5em 0.5em;
+    background-color: rgba(255, 255, 255, 0.644);
+    border-radius: 3px;
+    -webkit-box-shadow: -8px 11px 41px 3px rgba(0,0,0,0.5); 
+    box-shadow: -8px 11px 41px 3px rgba(0,0,0,0.5);
 }
 
 .comment-list .comment-section .comment-user-name {
     font-weight: bold;
+    margin-bottom: 0.7em;
+    font-size: 1.2em;
+
 }
 
 .comment-list .comment-section .comment-user-name .comment-user-time {
     font-weight: normal;
     margin-left: 0.5em;
     color: rgb(80, 80, 80);
-    font-size: 0.9em;
+    font-size: 0.7em;
 }
 
 /*--single page end here--*/

@@ -31,10 +31,13 @@ const homeProduct = async () => {
     }
 }
 
-const adjustDetail = async (slug) => {
+const adjustDetail = async (slug, reqPage) => {
     let detail = null;
     let relate = null;
     let comments = null;
+    let pages = [];
+    let len = 0;
+
     try {
         detail = await product.findOne({ slug: slug }).lean();
         comments = await comment.find({ productID: detail._id }).lean();
@@ -54,17 +57,29 @@ const adjustDetail = async (slug) => {
             return { ...item, name: name, slug: slug, sale: sale }
         })
 
+        const perPage = 5;
+        const page = parseInt(reqPage);
+
+        const start = (page - 1) * perPage;
+        const end = page * perPage;
+
+        for (let i = 0; i < comments.length / perPage; i++) {
+            pages.push(i + 1);
+        }
+        len = comments.length;
+        comments = comments.reverse();
+        comments = comments.slice(start, end);
+
         for (let i = 0; i < comments.length; i++) {
             const date = new Date(comments[i].createdAt);
             const month = date.getMonth() + 1;
             comments[i].date = date.getDate() + '/' + month + '/' + date.getFullYear();
         }
 
-        return [detail, relate, comments.reverse()];
+        return [detail, relate, comments, pages, len];
     } catch (err) {
         console.log(err);
     }
-    return [detail, relate, comments];
 }
 
 const getListProduct = async (reqPage, filter, option) => {

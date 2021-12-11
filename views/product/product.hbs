@@ -64,7 +64,7 @@
 
                 <div class="comment-block">
                     <div class="comment-input">
-                        <div class="comment-title">Comments ({{totalComment}})</div>
+                        <div class="comment-title">Comments ({{len}})</div>
                         {{#if user}}
                         <div id="comment-user-id" hidden name={{user._id}}></div>
                         <div id="comment-user-lastName" hidden name={{user.lastName}}></div>
@@ -78,14 +78,26 @@
                     <ul class="comment-list">
                         {{#each comments}}
                         <li class="comment-section">
-                            <div class="comment-user-name">{{this.lastName}} <i class="comment-user-time">(
+                            <div class="comment-user-name">{{this.lastName}}<i class="comment-user-time">(
                                     {{this.date}} )</i></div>
                             <div class="comment-user-content">{{this.content}}</div>
-                            <hr />
                         </li>
                         {{/each}}
-
                     </ul>
+                    <br>
+
+                    {{#if comments}}
+                    <div class="pagination col-md-12">
+                        <ul class="page-list">
+                            <li class="page"><a href="#">&lt;&lt;</a></li>
+                            {{#each pages}}
+                            <li class=" page"><a href="?page={{this}}">{{this}}</a></li>
+                            {{/each}}
+                            <li class="page"><a href="#">&gt;&gt;</a></li>
+                        </ul>
+                    </div>
+                    <div id="current-page" style="display: none;" name={{currentPage}}></div>
+                    {{/if}}
                 </div>
             </div>
         </div>
