@@ -1,4 +1,6 @@
 const user = require('../models/user');
+const cartService = require('../services/cartService');
+const orderService = require('../services/orderService');
 const bcrypt = require('bcrypt');
 
 const updateInfo = async (id, newInfo) => {
@@ -19,7 +21,8 @@ const updateInfo = async (id, newInfo) => {
 const getCustomer = async (id) => {
     try {
         const customer = await user.findOne({ _id: id });
-
+        const cart = await cartService.getCartByUserID(id);
+        customer.totalCart = cart.products.length;
         return customer;
     } catch (err) {
         console.log(err);
@@ -48,8 +51,21 @@ const validateChangePass = async (id, pass) => {
     }
 }
 
+const newOrder = async (id, content) => {
+    const cart = await cartService.getCartByUserID(id);
+    if (cart.products.length !== 0) {
+        const products = cart.products;
+        content.note = content.note.trim();
+        await orderService.createNewOrder(id, content, products);
+        await cartService.removeAllCartItem(id);
+        return 0; //checkout success
+    } else return 1; //empty cart
+}
+
+
 module.exports = {
     updateInfo,
     getCustomer,
-    validateChangePass
+    validateChangePass,
+    newOrder
 }

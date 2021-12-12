@@ -1,5 +1,5 @@
 const product = require('../models/product');
-const comment = require('../models/comment');
+const commentService = require('../services/commentService');
 
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
@@ -10,6 +10,15 @@ function shuffle(array) {
             array[randomIndex], array[currentIndex]];
     }
     return array;
+}
+
+const findProductByID = async (id) => {
+    try {
+        const aProduct = await product.findOne({ _id: id }).lean();
+        return aProduct;
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 const homeProduct = async () => {
@@ -40,7 +49,7 @@ const adjustDetail = async (slug, reqPage) => {
 
     try {
         detail = await product.findOne({ slug: slug }).lean();
-        comments = await comment.find({ productID: detail._id }).lean();
+        comments = await commentService.findProductComments(detail._id);
         relate = await product.find({ category: detail.category }).lean();
 
         detail.gender = detail.gender ? 'Women' : 'Men';
@@ -300,5 +309,7 @@ module.exports = {
     getListProduct,
     searchProduct,
     homeProduct,
-    SortProduct
+    SortProduct,
+    findProductByID,
+
 }

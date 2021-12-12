@@ -3,69 +3,115 @@
     <div class="container">
         <div class="ckeckout-top">
             <div class=" cart-items heading">
-                <h1>My Shopping Bag (3)</h1>
-                <script>$(document).ready(function (c) {
-                        $('.close1').on('click', function (c) {
-                            $('.cart-header').fadeOut('slow', function (c) {
-                                $('.cart-header').remove();
-                            });
-                        });
-                    });
-                </script>
-                <script>$(document).ready(function (c) {
-                        $('.close2').on('click', function (c) {
-                            $('.cart-header1').fadeOut('slow', function (c) {
-                                $('.cart-header1').remove();
-                            });
-                        });
-                    });
-                </script>
-                <script>$(document).ready(function (c) {
-                        $('.close3').on('click', function (c) {
-                            $('.cart-header2').fadeOut('slow', function (c) {
-                                $('.cart-header2').remove();
-                            });
-                        });
-                    });
-                </script>
-
+                <div class="cart-header-title">Cart</div>
+                <h1>My Shopping Bag ({{productsLength}})</h1>
                 <div class="in-check">
                     <ul class="unit">
                         <li><span>Item</span></li>
                         <li><span>Product Name</span></li>
+                        <li></li>
                         <li><span>Unit Price</span></li>
                         <div class="clearfix"> </div>
                     </ul>
+
+                    {{!-- not login yet / deal with local storage --}}
+                    {{!-- <ul class="cart-header simpleCart_shelfItem">
+                        <li class="ring-in">Empty cart</li>
+                        <li><span></span></li>
+                        <li><span class="item_price"></span></li>
+
+                        <div class="clearfix"> </div>
+                    </ul> --}}
+
+                    {{#if products}}
+                    {{#each products}}
                     <ul class="cart-header simpleCart_shelfItem">
-                        <div class="close1"> </div>
-                        <li class="ring-in"><a href="/product"><img src="/images/c.jpg" class="img-responsive"
-                                    alt=""></a>
+                        <div class="close1" onclick="handleRemoveProduct(event)" id={{this.fakeID}}></div>
+                        <div class="loader remove-loader" id="remove-cart-loader-{{this.fakeID}}"
+                            style="display: none;">
+                        </div>
+                        <li class="ring-in"><a href="/product/{{this.slug}}"><img src="{{this.image.[0].secure_url}}"
+                                    width="200px" height="200px" class="img-responsive" alt=""></a>
                         </li>
-                        <li><span>Bracelets</span></li>
-                        <li><span class="item_price">$ 290.00</span></li>
+                        <li><span class="item-name">{{this.name}}</span></li>
+                        <li><span class="item_price">$ {{this.price}}</span></li>
 
                         <div class="clearfix"> </div>
                     </ul>
-                    <ul class=" cart-header1 simpleCart_shelfItem">
-                        <div class="close2"> </div>
-                        <li class="ring-in"><a href="/product"><img src="/images/c2.jpg" class="img-responsive"
-                                    alt=""></a>
-                        </li>
-                        <li><span>Watches</span></li>
-                        <li><span class="item_price">$ 300.00</span></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <ul class="cart-header2 simpleCart_shelfItem">
-                        <div class="close3"> </div>
-                        <li class="ring-in"><a href="/product"><img src="/images/c3.jpg" class="img-responsive"
-                                    alt=""></a>
-                        </li>
-                        <li><span>Handbag</span></li>
-                        <li><span class="item_price">$ 360.00</span></li>
-                        <div class="clearfix"> </div>
-                    </ul>
+                    {{/each}}
+                    {{else}}
+                    <ul class="cart-header simpleCart_shelfItem">
+                        <li class="ring-in">Empty cart</li>
+                        <li><span></span></li>
+                        <li><span class="item_price"></span></li>
 
-                    <button class="checkout-submit">Buy</button>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    {{#if error}} <div class="text-right" style="color: red;">{{error}}</div> {{/if}}
+                    {{#if message}} <div class="text-right" style="color: green;">{{message}}</div> {{/if}}
+                    {{/if}}
+
+                    {{#if user}}
+                    <div id="cart-user-id" name={{user._id}}></div>
+                    <div id="checkout-service-available" hidden></div>
+                    <button type="button" class="checkout-submit" data-toggle="modal"
+                        data-target="#checkout-info-modal">Check out</button>
+                    {{/if}}
+
+                    <div class="modal fade" id="checkout-info-modal" tabindex="-1" role="dialog"
+                        aria-labelledby="checkout-modal-label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <div class="modal-title" id="checkout-modal-label">CHECKOUT</div>
+                                </div>
+                                <form action="/user/checkout/{{user._id}}" method="POST">
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="modal-checkout-name" class="col-form-label">Name:</label>
+                                            <input type="text" class="form-control shadow-none" id="modal-checkout-name"
+                                                name="name" required value="{{user.lastName}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="modal-checkout-number" class="col-form-label">Number:</label>
+                                            <input type="text" class="form-control" id="modal-checkout-number"
+                                                name="number" required value="{{user.number}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="modal-checkout-address" class="col-form-label">Address:</label>
+                                            <input type="text" class="form-control" id="modal-checkout-address"
+                                                name="address" required value="{{user.address}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Payment method:</label>
+                                            <select class="form-control" id="product-gender-dropbox" name="payment"
+                                                required>
+                                                <option value="COD">Cash on delivery</option>
+                                                <option value="DC">Debit card</option>
+                                                <option value="CC">Credit card</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Note:</label>
+                                            <textarea class="form-control" id="message-text" name="note"
+                                                style="resize: none; height: 5em"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn checkout-modal-btn modal-btn-close"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit"
+                                            class="btn checkout-modal-btn modal-btn-comfirm">Comfirm</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

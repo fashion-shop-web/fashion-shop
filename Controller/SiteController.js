@@ -1,4 +1,5 @@
 const productService = require('../services/productService');
+const cartService = require('../services/cartService');
 
 class SiteController {
 
@@ -14,8 +15,13 @@ class SiteController {
     }
 
     //[GET] cart page
-    checkOut(req, res) {
-        res.render('checkout');
+    async checkOut(req, res) {
+        const userID = req.session?.passport?.user?._id;
+        let products = [];
+        if (userID) {
+            products = await cartService.getCart(userID)
+        }
+        res.render('checkout', { products, productsLength: products.length });
     }
 }
 

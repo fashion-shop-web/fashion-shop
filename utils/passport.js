@@ -19,6 +19,8 @@ passport.use(new LocalStrategy({
     if (!loginService.validateActive(user)) {
       return done(null, false, { message: 'Account hasnt activated yet' });
     }
+    const cart = await loginService.FindCart(user._id);
+    user.totalCart = cart.products.length;
     return done(null, user);
   }
 ));

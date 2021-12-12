@@ -78,14 +78,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <input id="serch" type="text" placeholder="Search" onfocus="this.value = '';"
                 onblur="if (this.value == '') {this.value = 'Search';}" />
             </div>
-            <div class="cart box_1" style="margin-top: 15px;">
+            <div class="cart box_1">
               <a href="/checkout">
-                <h3>
-                  <img src="/images/cart.png" alt="" />
-                  <div class="total">
-                    <span style="margin-left: 0.5em">(0)</span>
-                  </div>
-                </h3>
+                <img src="/images/cart.png" alt="" />
+                <div class="total">
+                  (
+                  {{#if user}}
+                  <span id="header-total-cart">{{user.totalCart}}</span>
+                  {{else}}
+                  <span id="header-total-cart-storage"></span>
+                  {{/if}}
+                  )
+                </div>
               </a>
               {{!-- <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p> --}}
             </div>
@@ -147,9 +151,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </div>
   </div>
   <!--footer end here-->
-  <script src="/js/productPagination.js"></script>
-  <script src="/js/productSearch.js"></script>
-  <script src="/js/commentApi.js"></script>
 </body>
+
+<script src="/js/productPagination.js"></script>
+<script src="/js/productSearch.js"></script>
+<script src="/js/commentApi.js"></script>
+<script src="/js/cartManagement.js"></script>
 
 </html>

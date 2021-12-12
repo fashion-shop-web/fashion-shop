@@ -59,6 +59,14 @@ class UserController {
             res.render('user/password', { success: "Password has been changed" });
         }
     }
+
+    async createOrder(req, res) {
+        const id = req.params.id;
+        const content = req.body;
+        const error = await userService.newOrder(id, content);
+        if (!error) res.render('checkout', { message: 'Checkout success' })
+        else res.render('checkout', { error: 'Cannot checkout empty cart' })
+    }
 }
 
 module.exports = new UserController;

@@ -1,16 +1,20 @@
 const userModel = require('../models/user');
+const cartService = require('../services/cartService');
 const bcrypt = require('bcrypt')
 const salt = 10;
 const transporter = require('../utils/nodemailer');
 const crypto = require('crypto');
-
 require('dotenv').config;
 
-exports.FindByEmail = (email) => {
-    return userModel.findOne({
+exports.FindByEmail = async (email) => {
+    return await userModel.findOne({
         email: email,
         role: false
     }).lean();
+}
+
+exports.FindCart = async (userID) => {
+    return await cartService.getCartByUserID(userID);
 }
 
 exports.validPassword = (password, user) => {
@@ -48,6 +52,9 @@ exports.register = async (email, password, firstName, lastName, number, address,
         address: address,
         emailToken: emailToken,
     })
+
+    const userID = await userModel.findOne({ email: email })
+    await cartService.createNewCart(userID._id);
 }
 
 exports.activeNewAccount = async (emailToken) => {

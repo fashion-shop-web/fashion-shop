@@ -34,7 +34,7 @@ const handleChangeCurrentPage = (e) => {
 }
 
 if (Product) {
-    ListPage[parseInt(Product.getAttribute('name')) - 1].parentElement.classList.add('current-page');
+    ListPage[parseInt(Product.getAttribute('name')) - 1]?.parentElement.classList.add('current-page');
     for (let i = 0; i < ListPage.length; i++) {
         ListPage[i].addEventListener('click', event => handleChangeCurrentPage(event));
     }

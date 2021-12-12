@@ -34,7 +34,12 @@
                     <h2 class="item_price" style="margin-top: 2em;">Price: {{detail.price}}$</h2>
                     {{/if}}
                     <ul class="bann-btns">
-                        <li><a href="#" class="item_add">Add To Cart</a></li>
+
+                        <div class="loader" id="detail-add-cart-loader" style="display: none;"></div>
+
+                        <li><a href="#" class="item_add" onclick="addCart(event)" id="detail-add-cart-button">Add To
+                                Cart</a></li>
+                        <li id="add-cart-notice"></li>
                     </ul>
                 </div>
                 <div class="clearfix"> </div>
@@ -96,8 +101,10 @@
                             <li class="page"><a href="#">&gt;&gt;</a></li>
                         </ul>
                     </div>
-                    <div id="current-page" style="display: none;" name={{currentPage}}></div>
                     {{/if}}
+                    <div id="current-page" hidden name={{currentPage}}></div>
+                    {{!-- hidden div --}}
+                    <div id="detail-product-id" hidden name={{detail._id}}></div>
                 </div>
             </div>
         </div>

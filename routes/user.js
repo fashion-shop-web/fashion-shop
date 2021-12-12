@@ -6,8 +6,14 @@ const userController = require('../Controller/UserController');
 router.get('/password', userController.changePassword);
 router.post('/password/:id', userController.storeNewPass);
 
+//check out
+router.post('/checkout/:id', userController.createOrder);
+
+
 router.get('/history', userController.historyList);
 router.get('/arriving', userController.arrivingList);
+
+//log out
 router.get('/logout', userController.logOut);
 
 //update information
