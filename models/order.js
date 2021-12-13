@@ -14,6 +14,8 @@ const order = new Schema({
     note: { type: String },
     status: { type: String, required: true },
     process: { type: Array, required: true },
+    ship: { type: Number, required: true },
+    total: { type: Number, required: true },
 }, {
     timestamps: true
 });

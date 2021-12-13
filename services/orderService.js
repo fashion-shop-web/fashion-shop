@@ -1,11 +1,13 @@
 const order = require('../models/order')
+const cartService = require('../services/cartService')
 
 const createNewOrder = async (userID, content, products) => {
     try {
         const process = [];
         const status = 'pending';
         process.push({ status, date: Date.now() })
-        order.create({ userID, ...content, status, process, products })
+        const cart = await cartService.getCartByUserID(userID);
+        order.create({ userID, ...content, status, process, products, ship: cart.ship, total: cart.total })
     } catch (err) {
         console.log(err);
     }
