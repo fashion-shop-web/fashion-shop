@@ -1,4 +1,5 @@
 const apiService = require('../services/apiService');
+const cartService = require('../services/cartService');
 
 class ApiController {
     async storeComment(req, res) {
@@ -22,7 +23,8 @@ class ApiController {
         const userID = req.body.userID;
         const error = await apiService.removeProductFromCart(userID, productID);
         if (!error) req.session.passport.user.totalCart = req.session.passport.user.totalCart - 1;
-        res.send({ error });
+        const cart = await cartService.getCartByUserID(userID);
+        res.send({ error, cart });
     }
 
     async checkOut(req, res) {

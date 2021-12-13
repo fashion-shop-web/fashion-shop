@@ -39,6 +39,21 @@
                         <div class="clearfix"> </div>
                     </ul>
                     {{/each}}
+                    <div class="row cart-total">
+                        <div class="col-md-8 col-sm-6"></div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="cart-total-label">Ship:</div>
+                                    <div class="cart-total-label">Total price:</div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div>$ {{userCart.ship}}</div>
+                                    <div id="cart-total-price-label">$ {{userCart.total}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {{else}}
                     <ul class="cart-header simpleCart_shelfItem">
                         <li class="ring-in">Empty cart</li>

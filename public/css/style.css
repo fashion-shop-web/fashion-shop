@@ -257,6 +257,16 @@ nav.navbar.navbar-default {
 	}
 /*--navg--*/
 /*--cart--*/
+.cart-total {
+    margin: 2em 0;
+    font-size: 1.3em;
+}
+#cart-total-price-label {
+    font-weight: bold;
+}
+.cart-total .cart-total-label {
+    font-weight: bold;
+}
 .cart-header .item_price {
     text-align: center
 }

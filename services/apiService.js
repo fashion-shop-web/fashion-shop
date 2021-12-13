@@ -1,4 +1,5 @@
 const comment = require('../models/comment');
+const product = require('../models/product');
 const cart = require('../models/cart');
 
 const storeNewComment = async (productID, newComment) => {
@@ -17,6 +18,8 @@ const storeCart = async (productID, userID) => {
         const userCart = await cart.findOne({ userID: userID });
         if (userCart) {
             userCart.products.push(`${userCart.products.length}-${productID}`);
+            const aProduct = await product.findOne({ _id: productID });
+            userCart.total = userCart.total + Math.ceil(aProduct.price - (aProduct.price * aProduct.sale / 100))
             await userCart.save();
             return 0; //save success
         }
@@ -34,6 +37,8 @@ const removeProductFromCart = async (userID, productID) => {
         for (let i = 0; i < userCart.products.length; i++) {
             if (userCart.products[i] === productID) {
                 userCart.products.splice(i, 1);
+                const aProduct = await product.findOne({ _id: productID.substring(productID.indexOf('-') + 1, productID.length) });
+                userCart.total = userCart.total - Math.ceil(aProduct.price - (aProduct.price * aProduct.sale / 100))
             }
         }
         await userCart.save();

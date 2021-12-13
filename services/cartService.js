@@ -11,7 +11,8 @@ const getCart = async (userID) => {
             temp.fakeID = `${i}-${temp._id.toString()}`
             products.push(temp);
         }
-        return products;
+        userCart.total = userCart.total + userCart.ship;
+        return [products, userCart];
     } catch (err) {
         console.log(err);
     }
@@ -38,7 +39,7 @@ const createNewCart = async (userID) => {
 
 const removeAllCartItem = async (userID) => {
     try {
-        await cart.updateOne({ userID: userID }, { products: [] })
+        await cart.updateOne({ userID: userID }, { products: [], price: 0 })
     } catch (err) {
         console.log(err);
     }

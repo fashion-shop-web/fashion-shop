@@ -18,10 +18,11 @@ class SiteController {
     async checkOut(req, res) {
         const userID = req.session?.passport?.user?._id;
         let products = [];
+        let userCart = null;
         if (userID) {
-            products = await cartService.getCart(userID)
+            [products, userCart] = await cartService.getCart(userID)
         }
-        res.render('checkout', { products, productsLength: products.length });
+        res.render('checkout', { products, productsLength: products.length, userCart });
     }
 }
 

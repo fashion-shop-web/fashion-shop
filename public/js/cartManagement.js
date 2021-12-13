@@ -86,7 +86,8 @@ function handleRemoveProduct(e) {
             .then(res => res.json())
             .then(data => {
                 if (data.error === 0) {
-                    console.log(data.error);
+                    const totalPriceLabel = document.getElementById('cart-total-price-label');
+                    totalPriceLabel.innerText = data.cart.total + data.cart.ship;
                     e.target.parentElement.remove();
                 }
             })
