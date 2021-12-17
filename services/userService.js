@@ -1,7 +1,9 @@
 const user = require('../models/user');
+const product = require('../models/product');
 const cartService = require('../services/cartService');
 const orderService = require('../services/orderService');
 const bcrypt = require('bcrypt');
+const order = require('../models/order');
 
 const updateInfo = async (id, newInfo) => {
     try {
@@ -62,10 +64,54 @@ const newOrder = async (id, content) => {
     } else return 1; //empty cart
 }
 
+const getHistory = async (id) => {
+    try {
+        let orders = await orderService.getAllOrder(id);
+        orders = orders.filter(item => item.status === 'received');
+        if (orders.length !== 0) {
+            for (let i = 0; i < orders.length; i++) {
+                const receivedDate = new Date(orders[i].updatedAt);
+                let day = ("0" + receivedDate.getDate()).slice(-2);
+                let month = ("0" + (receivedDate.getMonth() + 1)).slice(-2);
+                let year = receivedDate.getFullYear();
+                let hour = ("0" + receivedDate.getHours()).slice(-2);;
+                let minute = ("0" + receivedDate.getMinutes()).slice(-2);;
+                let second = ("0" + receivedDate.getSeconds()).slice(-2);;
+                orders[i].receivedDate = day + '/' + month + '/' + year;
+                orders[i].receivedTime = hour + ':' + minute + ':' + second;
+
+                const checkoutDate = new Date(orders[i].createdAt);
+                day = ("0" + checkoutDate.getDate()).slice(-2);
+                month = ("0" + (checkoutDate.getMonth() + 1)).slice(-2);
+                year = checkoutDate.getFullYear();
+                hour = ("0" + checkoutDate.getHours()).slice(-2);;
+                minute = ("0" + checkoutDate.getMinutes()).slice(-2);;
+                second = ("0" + checkoutDate.getSeconds()).slice(-2);;
+                orders[i].checkoutDate = day + '/' + month + '/' + year;
+                orders[i].checkoutTime = hour + ':' + minute + ':' + second;
+
+                orders[i].detailProduct = [];
+
+                for (let j = 0; j < orders[i].products.length; j++) {
+                    const aProduct = await product.findOne({ _id: orders[i].products[j].substring(orders[i].products[j].indexOf('-') + 1, orders[i].products[j].length) })
+                    orders[i].detailProduct.push(aProduct);
+                }
+            }
+        }
+
+        console.log(orders);
+        return orders;
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
 
 module.exports = {
     updateInfo,
     getCustomer,
     validateChangePass,
-    newOrder
+    newOrder,
+    getHistory,
 }

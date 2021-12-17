@@ -353,6 +353,19 @@ a.item_add {
 .cart{
 	float:right;
 }
+/* history start here */
+.history-cart-header {
+    padding: 0.5em !important;
+    margin: 0 !important;
+    font-size: 0.8em !important;
+    text-align: center;
+}
+
+.history-img {
+    margin-left: 10em;
+}
+/* history end here */
+
 /*--banner strat here--*/
 .banner {
     min-height: 620px;
@@ -1978,6 +1991,10 @@ span.glyphicon.glyphicon-envelope {
     .forget .container {
         padding: 5em 0;
     }
+    
+    .history-img {
+        margin-left: 8em;
+    }
 }
 
 @media (max-width: 990px) {
@@ -1988,6 +2005,10 @@ span.glyphicon.glyphicon-envelope {
     .login-left {
         padding: 0 10em;
     }
+
+    .history-img {
+        margin-left: 5em;
+    }
 }
 
 @media (max-width: 600px) {
@@ -1997,6 +2018,10 @@ span.glyphicon.glyphicon-envelope {
 
     .login-left {
         padding: 0 5em;
+    }
+
+    .history-img {
+        margin-left: 2em;
     }
 }
 
@@ -2060,11 +2085,27 @@ span.glyphicon.glyphicon-envelope {
 .history-list {
 	width:100%;
 	margin: 2em 0 2em;
+    box-shadow: -7px 15px 20px 0px #000000;
 }
 .history-list .new-date {
-    margin-top: 3em;
-    margin-bottom: 0.5em;
+    /* margin-top: 3em; */
+    /* margin-bottom: 0.5em; */
 }
+
+.history-info {
+    margin: 0;
+    box-shadow: 0px 0px 4px #d2d1d1;
+    line-height: 1.5;
+    padding: 1em;
+    background: #ea572d;
+    color: antiquewhite;
+}
+.history .container ul.cart-header.history-cart-header {
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+
 ul.unit{
 	background:#EA572D;
 	padding:1em;

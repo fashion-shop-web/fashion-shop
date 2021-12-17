@@ -39,7 +39,7 @@ const createNewCart = async (userID) => {
 
 const removeAllCartItem = async (userID) => {
     try {
-        await cart.updateOne({ userID: userID }, { products: [], price: 0 })
+        await cart.updateOne({ userID: userID }, { products: [], total: 0 })
     } catch (err) {
         console.log(err);
     }

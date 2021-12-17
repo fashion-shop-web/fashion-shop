@@ -13,6 +13,16 @@ const createNewOrder = async (userID, content, products) => {
     }
 }
 
+const getAllOrder = async (userID) => {
+    try {
+        const orders = await order.find({ userID: userID }).lean();
+        return orders;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
-    createNewOrder
+    createNewOrder,
+    getAllOrder,
 }

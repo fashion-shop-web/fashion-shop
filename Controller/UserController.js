@@ -8,8 +8,10 @@ class UserController {
     }
 
     //[GET] history list
-    historyList(req, res) {
-        res.render('user/history');
+    async historyList(req, res) {
+        const userID = req.session?.passport?.user?._id;
+        const orders = await userService.getHistory(userID)
+        res.render('user/history', { orders });
     }
 
     //[GET] change password page
