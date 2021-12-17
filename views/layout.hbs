@@ -91,7 +91,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   )
                 </div>
               </a>
-              {{!-- <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p> --}}
             </div>
 
             {{#if user}}
@@ -106,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="multi-column-dropdown">
                       <li><a href="/user">My information</a></li>
                       <li><a href="/user/password">Change password</a></li>
-                      <li><a href="/user/arriving">Arriving (3)</a></li>
+                      <li><a href="/user/arriving">Arriving ( {{user.arriving}} )</a></li>
                       <li><a href="/user/history">History</a></li>
                       <li><a href="/user/logout">Log out <span class="glyphicon glyphicon-log-in" aria-hidden="true"
                             style="padding-left: 8px"></span></a>

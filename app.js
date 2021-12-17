@@ -8,7 +8,14 @@ const passport = require('./utils/passport');
 
 const app = express();
 
+//helper
+const hbs = require('hbs');
+hbs.registerHelper('compare', function (a, b) {
+  return a == b ? true : false;
+});
+
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

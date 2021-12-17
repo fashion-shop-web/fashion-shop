@@ -22,7 +22,16 @@ const getAllOrder = async (userID) => {
     }
 }
 
+const cancleOrder = async (orderID) => {
+    try {
+        await order.updateOne({ _id: orderID }, { status: 'cancel' })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 module.exports = {
     createNewOrder,
     getAllOrder,
+    cancleOrder
 }

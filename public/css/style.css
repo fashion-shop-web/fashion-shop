@@ -256,6 +256,9 @@ nav.navbar.navbar-default {
 		color:#2896B1;
 	}
 /*--navg--*/
+.history-img {
+    margin-left: 10em;
+}
 /*--cart--*/
 .cart-total {
     margin: 2em 0;
@@ -353,18 +356,7 @@ a.item_add {
 .cart{
 	float:right;
 }
-/* history start here */
-.history-cart-header {
-    padding: 0.5em !important;
-    margin: 0 !important;
-    font-size: 0.8em !important;
-    text-align: center;
-}
 
-.history-img {
-    margin-left: 10em;
-}
-/* history end here */
 
 /*--banner strat here--*/
 .banner {
@@ -2079,25 +2071,33 @@ span.glyphicon.glyphicon-envelope {
 /* change password end here */
 
 /* history start here */
+
 .history{
-	padding:6em 0em;
+	padding: 0em;
+    margin-top: 3em;
 }
 .history-list {
 	width:100%;
 	margin: 2em 0 2em;
+}
+.history-item {
+    margin: 4em 0; 
     box-shadow: -7px 15px 20px 0px #000000;
 }
-.history-list .new-date {
-    /* margin-top: 3em; */
-    /* margin-bottom: 0.5em; */
+.history-cart-header {
+    padding: 0.5em !important;
+    margin: 0 !important;
+    font-size: 0.8em !important;
+    text-align: center;
 }
+
 
 .history-info {
     margin: 0;
     box-shadow: 0px 0px 4px #d2d1d1;
     line-height: 1.5;
     padding: 1em;
-    background: #ea572d;
+    background: #847057;
     color: antiquewhite;
 }
 .history .container ul.cart-header.history-cart-header {
@@ -2106,8 +2106,8 @@ span.glyphicon.glyphicon-envelope {
     align-items: center ;
 }
 
-ul.unit{
-	background:#EA572D;
+.history ul.unit{
+	background:#847057;
 	padding:1em;
 }
 ul.unit li {
@@ -2176,19 +2176,76 @@ ul.cart-header li span h6,ul.cart-header1 li span h6,ul.cart-header2 li span h6{
 
 /* arriving start here */
 .arriving{
-	padding:6em 0em;
+	padding: 0;
+    margin-top: 3em;
 }
 .arriving-list {
 	width:100%;
 	margin: 2em 0 2em;
 }
+.arriving-item {
+    margin: 4em 0; 
+    box-shadow: -7px 15px 20px 0px #000000;
+}
+.arriving .container ul.cart-header.history-cart-header {
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+.arriving-cart-header {
+    padding: 0.5em !important;
+    margin: 0 !important;
+    font-size: 0.8em !important;
+}
+
 .arriving-list .arriving-status {
     margin-top: 3em;
     margin-bottom: 0.5em;
 }
-ul.unit{
-	background:#EA572D;
+.arriving-info {
+    margin: 0;
+    box-shadow: 0px 0px 4px #d2d1d1;
+    line-height: 1.5;
+    padding: 1em;
+    background: #ac4528;
+    color: antiquewhite;
+}
+.arriving-item-status {
+    text-transform: capitalize;
+}
+.arriving ul.unit{
+	background:#ac4528;
 	padding:1em;
+}
+.arriving .unit {
+    position: relative;
+}
+
+.arriving .arriving-item-cancel-icon {
+    position: absolute;
+    right: 1em;
+    top: 1.2em;
+    color: white;
+    cursor: pointer;
+}
+
+.arriving .modal-dialog {
+    width: 30em;
+    margin: 15em auto;
+}
+.arriving .arriving-modal {
+    background-color: #ac4528;
+    color: white;
+    font-size: 1.5em;
+}
+.arriving .modal-body {
+    font-size: 1.2em;
+}
+.arriving .arriving-modal-btn {
+    font-size: 1.1em;
+}
+.arriving .arriving-cancel-form {
+    display: inline;
 }
 ul.unit li {
 	display:inline-block;

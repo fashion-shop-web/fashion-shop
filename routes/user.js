@@ -11,6 +11,8 @@ router.post('/checkout/:id', userController.createOrder);
 
 
 router.get('/history', userController.historyList);
+
+router.get('/arriving/:id', userController.cancleOrder);
 router.get('/arriving', userController.arrivingList);
 
 //log out

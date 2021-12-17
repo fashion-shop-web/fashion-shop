@@ -1,74 +1,118 @@
-<!--start-history-->
+<!--start-arriving-->
 <div class="arriving">
     <div class="container">
         <div class="arriving-top">
             <div class=" cart-items heading">
                 <h1 style="font-size: 3em;">Arriving</h1>
                 <div class="arriving-list">
-                    <h3 class="arriving-status">Status: <span style="font-size: 0.9em; color:cadetblue">Packing
-                            order</span>
-                    </h3>
-                    <ul class="unit">
-                        <li><span>Item</span></li>
-                        <li><span>Product Name</span></li>
-                        <li><span>Unit Price</span></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <ul class="cart-header">
-                        <li class="ring-in"><a href="/product"><img src="/images/c.jpg" class="img-responsive"
-                                    alt=""></a>
-                        </li>
-                        <li><span>Bracelets</span></li>
-                        <li><span>$ 290.00</span></li>
 
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <ul class=" cart-header1">
-                        <li class="ring-in"><a href="/product"><img src="/images/c2.jpg" class="img-responsive"
-                                    alt=""></a>
-                        </li>
-                        <li><span>Watches</span></li>
-                        <li><span>$ 300.00</span></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <ul class="cart-header2">
-                        <li class="ring-in"><a href="/product"><img src="/images/c3.jpg" class="img-responsive"
-                                    alt=""></a>
-                        </li>
-                        <li><span>Handbag</span></li>
-                        <li><span>$ 360.00</span></li>
-                        <div class="clearfix"> </div>
-                    </ul>
+                    {{#if orders}}
+                    {{#each orders}}
+                    <div class="arriving-item">
+                        <ul class="unit">
+                            <li class="text-center"><span>Item</span></li>
+                            <li class="text-center"><span>Product Name</span></li>
+                            <li class="text-center"><span>Unit Price</span></li>
+                            {{#if (compare this.status 'pending')}}
+                            <div><i class="glyphicon glyphicon-remove arriving-item-cancel-icon" data-toggle="modal"
+                                    data-target="#cancel-arriving-order"></i></div>
+                            {{/if}}
+                            <div class="clearfix"> </div>
+                        </ul>
 
-                    <h3 class="arriving-status">Status: <span style="font-size: 0.9em; color:cadetblue">Packing
-                            order</span>
-                    </h3>
-                    <ul class="unit">
-                        <li><span>Item</span></li>
-                        <li><span>Product Name</span></li>
-                        <li><span>Unit Price</span></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <ul class="cart-header">
-                        <li class="ring-in"><a href="/product"><img src="/images/c.jpg" class="img-responsive"
-                                    alt=""></a>
-                        </li>
-                        <li><span>Bracelets</span></li>
-                        <li><span>$ 290.00</span></li>
+                        {{#each this.detailProduct}}
+                        <ul class="cart-header arriving-cart-header">
+                            <li class="ring-in"><a href="/product/{{this.slug}}"><img
+                                        src="{{this.image.[0].secure_url}}" width="100px" height="100px"
+                                        class="img-responsive history-img" alt=""></a>
+                            </li>
+                            <li><span class="item-name">{{this.name}}</span></li>
+                            <li><span class="item_price">$ {{this.price}}</span></li>
 
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <ul class=" cart-header1">
-                        <li class="ring-in"><a href="/product"><img src="/images/c2.jpg" class="img-responsive"
-                                    alt=""></a>
-                        </li>
-                        <li><span>Watches</span></li>
-                        <li><span>$ 300.00</span></li>
-                        <div class="clearfix"> </div>
-                    </ul>
+                            <div class="clearfix"> </div>
+                        </ul>
+                        {{/each}}
+                        <div class="row arriving-info">
+                            <div class="col-md-6 col-sm-5">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <div><strong>Name:</strong></div>
+                                        <div><strong>Number:</strong></div>
+                                        <div><strong>Address:</strong></div>
+                                        <div><strong>Payment:</strong></div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-6 col-xs-6">
+                                        <div>{{this.name}}</div>
+                                        <div>{{this.number}}</div>
+                                        <div>{{this.address}}</div>
+                                        {{#if (compare this.payment 'COD')}}
+                                        <div>Cash on delivery</div>
+                                        {{/if}}
+                                        {{#if (compare this.payment 'CC')}}
+                                        <div>Credit card</div>
+                                        {{/if}}
+                                        {{#if (compare this.payment 'DC')}}
+                                        <div>Debit card</div>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-7">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2"></div>
+                                    <div class="col-md-5 col-sm-5 col-xs-6">
+                                        <div><strong>Checkout date:</strong></div>
+                                        <div><strong>Ship:</strong></div>
+                                        <div><strong>Total price:</strong></div>
+                                        <div><strong>Status:</strong></div>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 col-xs-6">
+                                        <div>{{this.checkoutDate}}</div>
+                                        <div>$ {{this.ship}}</div>
+                                        <div>$ {{this.total}}</div>
+                                        <div class="arriving-item-status"><strong>{{this.status}}</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cancel-arriving-order" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header arriving-modal">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h2 class="modal-title">Comfirm</h2>
+                                </div>
+                                <div class="modal-body">
+                                    Do you want to cancel this order
+                                </div>
+                                <br>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary arriving-modal-btn"
+                                        data-dismiss="modal">Close</button>
+                                    <form action="/user/arriving/{{this._id}}" class='arriving-cancel-form'>
+                                        <button type="submit" class="btn btn-danger arriving-modal-btn"
+                                            onclick="">Cancel order</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{/if}}
                 </div>
             </div>
         </div>
     </div>
+
 </div>
-<!--end-history-->
+
+
+<!--end-arriving-->

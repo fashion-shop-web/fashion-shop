@@ -1,5 +1,6 @@
 const userModel = require('../models/user');
 const cartService = require('../services/cartService');
+const orderService = require('../services/orderService');
 const bcrypt = require('bcrypt')
 const salt = 10;
 const transporter = require('../utils/nodemailer');
@@ -15,6 +16,13 @@ exports.FindByEmail = async (email) => {
 
 exports.FindCart = async (userID) => {
     return await cartService.getCartByUserID(userID);
+}
+
+exports.getNumberArriving = async (userID) => {
+    const orders = await orderService.getAllOrder(userID);
+    const len = orders.filter(item => (item.status !== 'received' && item.status !== 'cancel')).length;
+    console.log(len)
+    return len;
 }
 
 exports.validPassword = (password, user) => {

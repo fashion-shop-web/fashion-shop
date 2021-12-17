@@ -3,8 +3,18 @@ const userService = require('../services/userService');
 class UserController {
 
     //[GET] arrvinglist
-    arrivingList(req, res) {
-        res.render('user/arriving');
+    async arrivingList(req, res) {
+        const userID = req.session?.passport?.user?._id;
+        const orders = await userService.getArriving(userID)
+        res.render('user/arriving', { orders });
+    }
+
+    //[GET] cancle order
+    async cancleOrder(req, res) {
+        const userOrder = req.params.id;
+        await userService.cancleOrder(userOrder);
+        req.session.passport.user.arrving = parseInt(req.session.passport.user.arrving) - 1; // no update?
+        res.redirect('/user/arriving');
     }
 
     //[GET] history list

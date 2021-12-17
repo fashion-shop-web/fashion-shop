@@ -21,6 +21,7 @@ passport.use(new LocalStrategy({
     }
     const cart = await loginService.FindCart(user._id);
     user.totalCart = cart.products.length;
+    user.arriving = await loginService.getNumberArriving(user._id);
     return done(null, user);
   }
 ));
