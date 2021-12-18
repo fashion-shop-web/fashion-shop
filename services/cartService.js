@@ -45,9 +45,29 @@ const removeAllCartItem = async (userID) => {
     }
 }
 
+const getCartLen = async (userID) => {
+    try {
+        const userCart = await cart.findOne({ userID: userID });
+        return userCart.products.length;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+const getTotalPrice = async (userID) => {
+    try {
+        const userCart = await cart.findOne({ userID: userID });
+        return userCart.total;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     getCart,
     getCartByUserID,
     createNewCart,
-    removeAllCartItem
+    removeAllCartItem,
+    getCartLen,
+    getTotalPrice
 }

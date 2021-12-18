@@ -14,56 +14,52 @@
                         <div class="clearfix"> </div>
                     </ul>
 
-                    {{!-- not login yet / deal with local storage --}}
-                    {{!-- <ul class="cart-header simpleCart_shelfItem">
-                        <li class="ring-in">Empty cart</li>
-                        <li><span></span></li>
-                        <li><span class="item_price"></span></li>
+                    {{#if user}}
+                    <div id="user-cart-list">
+                        {{#if products}}
+                        {{#each products}}
+                        <ul class="cart-header simpleCart_shelfItem">
+                            <div class="close1" onclick="handleRemoveProduct(event)" id={{this.fakeID}}></div>
+                            <div class="loader remove-loader" id="remove-cart-loader-{{this.fakeID}}"
+                                style="display: none;">
+                            </div>
+                            <li class="ring-in"><a href="/product/{{this.slug}}"><img
+                                        src="{{this.image.[0].secure_url}}" width="200px" height="200px"
+                                        class="img-responsive" alt=""></a>
+                            </li>
+                            <li><span class="item-name">{{this.name}}</span></li>
+                            <li><span class="item_price">$ {{this.price}}</span></li>
 
-                        <div class="clearfix"> </div>
-                    </ul> --}}
-
-                    {{#if products}}
-                    {{#each products}}
-                    <ul class="cart-header simpleCart_shelfItem">
-                        <div class="close1" onclick="handleRemoveProduct(event)" id={{this.fakeID}}></div>
-                        <div class="loader remove-loader" id="remove-cart-loader-{{this.fakeID}}"
-                            style="display: none;">
-                        </div>
-                        <li class="ring-in"><a href="/product/{{this.slug}}"><img src="{{this.image.[0].secure_url}}"
-                                    width="200px" height="200px" class="img-responsive" alt=""></a>
-                        </li>
-                        <li><span class="item-name">{{this.name}}</span></li>
-                        <li><span class="item_price">$ {{this.price}}</span></li>
-
-                        <div class="clearfix"> </div>
-                    </ul>
-                    {{/each}}
-                    <div class="row cart-total">
-                        <div class="col-md-8 col-sm-6 col-xs-4"></div>
-                        <div class="col-md-4 col-sm-6 col-xs-8">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <div class="cart-total-label">Ship:</div>
-                                    <div class="cart-total-label">Total price:</div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <div>$ {{userCart.ship}}</div>
-                                    <div id="cart-total-price-label">$ {{userCart.total}}</div>
+                            <div class="clearfix"> </div>
+                        </ul>
+                        {{/each}}
+                        <div class="row cart-total">
+                            <div class="col-md-8 col-sm-6 col-xs-4"></div>
+                            <div class="col-md-4 col-sm-6 col-xs-8">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="cart-total-label">Ship:</div>
+                                        <div class="cart-total-label">Total price:</div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div>$ {{userCart.ship}}</div>
+                                        <div id="cart-total-price-label">$ {{userCart.total}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        {{else}}
+                        <ul class="cart-header simpleCart_shelfItem">
+                            <li class="ring-in">Empty cart</li>
+                        </ul>
+                        {{#if error}} <div class="text-right" style="color: red;">{{error}}</div> {{/if}}
+                        {{#if message}} <div class="text-right" style="color: green;">{{message}}</div> {{/if}}
+                        {{/if}}
                     </div>
-                    {{else}}
-                    <ul class="cart-header simpleCart_shelfItem">
-                        <li class="ring-in">Empty cart</li>
-                        <li><span></span></li>
-                        <li><span class="item_price"></span></li>
 
-                        <div class="clearfix"> </div>
-                    </ul>
-                    {{#if error}} <div class="text-right" style="color: red;">{{error}}</div> {{/if}}
-                    {{#if message}} <div class="text-right" style="color: green;">{{message}}</div> {{/if}}
+                    {{else}}
+                    {{!-- not login yet / deal with local storage --}}
+                    <div id="guest-cart-list"></div>
                     {{/if}}
 
                     {{#if user}}

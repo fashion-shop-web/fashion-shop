@@ -7,7 +7,9 @@ const ApiController = require('../Controller/ApiController');
 router.post('/comment/:productID', ApiController.storeComment);
 
 //cart api
+router.post('/cart/isUser', ApiController.mapCartFromLocal);
 router.post('/cart/:productID', ApiController.addCart);
 router.delete('/cart/:productID', ApiController.deleteCart);
+
 
 module.exports = router;

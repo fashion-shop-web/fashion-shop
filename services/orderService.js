@@ -24,7 +24,11 @@ const getAllOrder = async (userID) => {
 
 const cancleOrder = async (orderID) => {
     try {
-        await order.updateOne({ _id: orderID }, { status: 'cancel' })
+        const userOrder = await order.findOne({ _id: orderID });
+        userOrder.status = 'cancel';
+        const aProcess = { status: 'cancel', date: Date.now() }
+        userOrder.process.push(aProcess);
+        await userOrder.save();
     } catch (err) {
         console.log(err)
     }

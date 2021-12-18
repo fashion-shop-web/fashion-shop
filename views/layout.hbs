@@ -83,17 +83,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <img src="/images/cart.png" alt="" />
                 <div class="total">
                   (
-                  {{#if user}}
                   <span id="header-total-cart">{{user.totalCart}}</span>
-                  {{else}}
-                  <span id="header-total-cart-storage"></span>
-                  {{/if}}
                   )
                 </div>
               </a>
             </div>
 
             {{#if user}}
+            <div id="is-login-user-id" name="{{user._id}}"></div>
             <div class="head-signin dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                 style="font-family: 'Oswald', sans-serif; text-decoration: none; color:black; font-size: 0.8em"><i

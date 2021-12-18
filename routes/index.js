@@ -17,7 +17,7 @@ function route(app) {
   app.use('/login', loginGaurd.LoginedGaurd, loginRouter);
 
   //comment api
-  app.use('/api', loginGaurd.LoginGaurd, apiRouter);
+  app.use('/api', apiRouter);
 
   // site page
   app.use('/', siteRouter);

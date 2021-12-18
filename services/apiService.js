@@ -23,7 +23,6 @@ const storeCart = async (productID, userID) => {
             await userCart.save();
             return 0; //save success
         }
-
         return 1; //no account
     } catch (err) {
         console.log(err);
@@ -49,8 +48,23 @@ const removeProductFromCart = async (userID, productID) => {
     }
 }
 
+const appendCartFromLocal = async (userID, products) => {
+    try {
+        const userCart = await cart.findOne({ userID: userID });
+        products.forEach(item => {
+            const newProduct = `${userCart.products.length}-${item._id}`;
+            userCart.products.push(newProduct);
+            userCart.total = userCart.total + item.finalPrice;
+        })
+        await userCart.save();
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     storeNewComment,
     storeCart,
-    removeProductFromCart
+    removeProductFromCart,
+    appendCartFromLocal
 }

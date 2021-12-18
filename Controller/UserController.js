@@ -13,13 +13,13 @@ class UserController {
     async cancleOrder(req, res) {
         const userOrder = req.params.id;
         await userService.cancleOrder(userOrder);
-        req.session.passport.user.arrving = parseInt(req.session.passport.user.arrving) - 1; // no update?
+        req.session.passport.user.arriving = parseInt(req.session.passport.user.arriving) - 1;
         res.redirect('/user/arriving');
     }
 
     //[GET] history list
     async historyList(req, res) {
-        const userID = req.session?.passport?.user?._id;
+        const userID = req.session.passport.user._id;
         const orders = await userService.getHistory(userID)
         res.render('user/history', { orders });
     }
@@ -58,7 +58,6 @@ class UserController {
 
     async storeNewPass(req, res) {
         const valid = await userService.validateChangePass(req.params.id, req.body);
-        console.log(valid);
         if (valid === 1) {
             res.render('user/password', { message: "Wrong current password" });
         } else if (valid === 2) {
@@ -75,9 +74,11 @@ class UserController {
     async createOrder(req, res) {
         const id = req.params.id;
         const content = req.body;
+        req.session.passport.user.totalCart = 0;
+        req.session.passport.user.arriving = parseInt(req.session.passport.user.arriving) + 1;
         const error = await userService.newOrder(id, content);
-        if (!error) res.render('checkout', { message: 'Checkout success' })
-        else res.render('checkout', { error: 'Cannot checkout empty cart' })
+        if (!error) res.render('checkout', { message: 'Checkout success', productsLength: 0 })
+        else res.render('checkout', { error: 'Cannot checkout empty cart', productsLength: 0 })
     }
 }
 
