@@ -60,9 +60,9 @@
 <!--home-block start here-->
 <div class="home-block">
     <div class="container">
-        <div class="home-block-main">
+        <div class="row home-block-main">
             {{#each products}}
-            <div class="col-md-3 home-grid">
+            <div class="col-md-3 col-xs-6 home-grid">
                 <div class="home-product-main">
                     <div class="home-product-top">
                         <a href={{this.slug}}><img src={{this.image.[0].secure_url}} alt={{this.name}}

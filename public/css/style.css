@@ -2458,7 +2458,6 @@ ul.bann-btns li a {
 }
 .home-product-main {
     float: left;
-    width: 47%;
     margin-right: 1em;
 }
 .signin-main input[type="text"] {
@@ -2536,7 +2535,6 @@ span.bann-heart {
 }
 .home-product-main {
     float: left;
-    width: 47%;
     margin-right: 1em;
     margin-bottom: 2em;
 }
@@ -2629,11 +2627,13 @@ h3.typo1 {
 @media(max-width:765px){
 .verify {
     min-height: 20em;
-
 }
 .verify .verify-container {
     padding: 5em 10em; 
 
+}
+.navbar-brand {
+    display: none;
 }
     
 .navbar-toggle {
@@ -2646,7 +2646,8 @@ h3.typo1 {
     justify-content: center;
 }
 .navbar-header {
-    text-align: center;
+    /* text-align: center; */
+    margin-left: 3.2em;
 }
 .navbar-default .navbar-toggle {
     border: none;
@@ -2824,7 +2825,6 @@ h3.typo1 {
     width: 100%;
 }
 .home-product-main {
-    width: 48%;
     margin-right: 0.5em;
         margin-bottom: 1em;
 }
@@ -2978,9 +2978,6 @@ h3.typo1 {
 @media(max-width:414px){
 .home-product-bottom {
     padding: 1em 1em;	
-}
-.home-product-main {
-    width: 47%;
 }
 .login-right a {
     width: 50%;
@@ -3151,7 +3148,6 @@ select.bann-size {
     padding: 1em 0.5em;
 }
 .home-product-main {
-    width: 47%;
     margin-right: 0.5em;
     margin-bottom: 0.7em;
 }
