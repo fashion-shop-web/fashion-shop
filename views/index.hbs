@@ -32,33 +32,47 @@
     </div>
 </div>
 <!--block-layer2 end here-->
-<!--block-layer1 start here-->
+<!--block-layer3 start here-->
 <div class="blc-layer3">
     <div class="container">
-        <div class="blc-layer4-main">
-            <div class="col-md-6 blc-layer3-grids1">
-                <h6>Our product</h6>
-                <ul>
-                    <li>
-                        <h4>Temporibus autem quibusdam</h4>
-                        <h5>At vero eos et accusamus et iusto odio</h5>
-                    </li>
-                    <li>
-                        <h4>These cases are perfectly</h4>
-                        <h5>voluptatum deleniti atque corrupti quos</h5>
-                    </li>
-                </ul>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0 aos-init aos-animate" data-aos="fade"
+                data-aos-delay="100"style="margin-left:50px"> 
+                <a class="block-2-item" href="/product/women">
+                    <figure class="image">
+                        <img src="/images/woman.jpg" alt="" class="img-fluid" 
+                             >
+                    </figure>
+                    <div class="text-categories">
+                        <span class="text-uppercase">Collections</span>
+                        <h3>Women</h3>
+                    </div>
+                </a>
             </div>
-            <div class="col-md-4 blc-layer3-grids2">
-                <a href="/product"><img src="/images/bracelate.png" alt=""></a>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0 aos-init aos-animate" data-aos="fade"
+                data-aos-delay="100" style="margin-left:300px">
+                <a class="block-2-item" href="/product/men">
+                    <figure class="image">
+                        <img src="/images/man.jpg" alt="" class="img-fluid"
+                                 >
+                    </figure>
+                    <div class="text-categories">
+                        <span class="text-uppercase">Collections</span>
+                        <h3>Men</h3>
+                    </div>
+                </a>
             </div>
-            <div class="clearfix"> </div>
         </div>
     </div>
 </div>
 <!--block-layer1 end here-->
 <!--home-block start here-->
 <div class="home-block">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center pt-4" >
+            <h2 style="margin-top:10px">Featured Products</h2>
+        </div>
+    </div>
     <div class="container">
         <div class="row home-block-main">
             {{#each products}}

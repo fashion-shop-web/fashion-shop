@@ -512,6 +512,69 @@ ul.bann-btns li a:hover {
 .blc-layer3-grids2 img {
     width: 100%;
 }
+.block-2-item {
+    display: block;
+    position: relative;
+}
+
+.block-2-item:hover {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+.block-2-item .image {
+    position: relative;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.block-2-item:before {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: -moz-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    /* background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(18%, transparent), color-stop(99%, rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))); */
+    background: -o-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+    /* background: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%); */
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#cc000000', GradientType=0);
+}
+
+.block-2-item .image img {
+    margin-bottom: 0;
+    -webkit-transition: .3s all ease-in-out;
+    -o-transition: .3s all ease-in-out;
+    transition: .3s all ease-in-out;
+}
+
+.block-2-item:hover {
+    text-decoration: none;
+}
+
+.block-2-item:hover .image img {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-categories {
+    z-index: 2;
+    bottom: 0;
+    padding-left: 20px;
+    position: absolute;
+    width: 100%;
+    color: #EA572D;
+}
 .box-grid {
     background: #fff;
     box-shadow: 0px 0px 1px 1px rgba(204, 204, 204, 0.76);
@@ -636,6 +699,16 @@ ul.bann-btns li a:hover {
 .home-product-bottom p {
     font-size: 1em;
     color: #fff;
+}
+.home-block .text-center::before {
+    content: "";
+    left: 50%;
+    top: 0px;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background: rgb(234, 87, 45);
 }
 /*--footer strat here--*/
 .footer {
