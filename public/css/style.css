@@ -2305,15 +2305,14 @@ ul.cart-header2 li span h6 {
 .search-button{
     font-size: 1em;
     color: #fff;
-    padding: 0.5em 1.5em;
-    border: none;
-    background: #EA572D;
-    outline: none;
+    padding: 0.83em 1.3em;
+    background: #847057;
     display: block;
-    margin-top: 1em
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
 }
 .search-button:hover{
-    background: #847057;
+    background: #EA572D;
 }
 .advance-search-box h2{
     color: #EA572D;
@@ -2322,7 +2321,7 @@ ul.cart-header2 li span h6 {
     font-size:2em;
 
 }
-.advance-search #name{
+.name-box #name{
     font-size: 1em;
     color: #999;
     padding: 0.5em 1em;

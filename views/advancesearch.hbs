@@ -8,7 +8,7 @@
                 <div class="name-box">
                     <div class="col-md-12">
                         <h2>Name</h2>
-                        <input id="name" type="text" placeholder="Name" onfocus="this.value = '';"
+                        <input name="name" id="name"type="text" placeholder="Name" onfocus="this.value = '';"
                             onblur="if (this.value == '') {this.value = 'Name';}" />
                     </div>
                 </div>
@@ -17,34 +17,34 @@
                         <div class="col-md-12">
                             <div class="categories-radio">
                                 <h2>Categories</h2>
-                                <select name="categories" id="categories">
-                                    <option name="All Acessories">All Acessories</option>
-                                    <option name="Handbag">Handbag</option>
-                                    <option name="Bracelet">Bracelet</option>
-                                    <option name="Wrist watch">Wrist watch</option>
+                                <select id="categories" >
+                                    <option value="all">All Acessories</option>
+                                    <option value="handbag">Handbag</option>
+                                    <option value="bracelet">Bracelet</option>
+                                    <option value="wristwatch">Wrist watch</option>
                                 </select>
                             </div>
                             <div class="brand-radio">
                                 <h2>Brand</h2>
-                                <select name="brand" id="brand">
-                                    <option name="All Brands">All Brands</option>
-                                    <option name="Louis Vuitton">Louis Vuitton</option>
-                                    <option name="Rolex">Rolex</option>
-                                    <option name="Chanel">Chanel</option>
-                                    <option name="Gucci">Gucci</option>
-                                    <option name="Omega">Omega</option>
-                                    <option name="Hermes">Hermes</option>
-                                    <option name="Dior">Dior</option>
-                                    <option name="Prada">Prada</option>
-                                    <option name="YSL">YSL</option>
-                                    <option name="Citizen">Citizen</option>
-                                    <option name="Michael Kors">Michael Kors</option>
-                                    <option name="Fendi">Fendi</option>
+                                <select id="brand" >
+                                    <option value="all">All Brands</option>
+                                    <option value="louisvuitton">Louis Vuitton</option>
+                                    <option value="rolex">Rolex</option>
+                                    <option value="chanel">Chanel</option>
+                                    <option value="gucci">Gucci</option>
+                                    <option value="omega">Omega</option>
+                                    <option value="hermes">Hermes</option>
+                                    <option value="dior">Dior</option>
+                                    <option value="prada">Prada</option>
+                                    <option value="ysl">YSL</option>
+                                    <option value="citizen">Citizen</option>
+                                    <option value="michaelkors">Michael Kors</option>
+                                    <option value="fendi">Fendi</option>
                                 </select>
                             </div>
                             <div class="discount-radio">
                                 <h2>Discount</h2>
-                                <select name="discount" id="discount">
+                                <select id="discount" >
                                     <option value="0">No promotion</option>
                                     <option value="50">50% and above</option>
                                     <option value="40">40% and above</option>
@@ -54,13 +54,12 @@
                                 </select>
                             </div>
                         </div>
- 
                     </div>
-                                           <div class="row">
-                            <div class="search-container">
-                                <button class="search-button">Search</button>
-                            </div>
+                    <div class="row">
+                        <div class="search-container">
+                            <button class="search-button" id="search-button">Search</button>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
