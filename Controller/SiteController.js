@@ -8,6 +8,11 @@ class SiteController {
         res.render('contact');
     }
 
+    //[GET] contact page /contact
+    advanceSearchPage(req, res) {
+        res.render('advancesearch');
+    }
+
     //[GET] load home page /
     async homePage(req, res) {
         const products = await productService.homeProduct();

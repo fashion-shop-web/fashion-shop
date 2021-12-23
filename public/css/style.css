@@ -2281,6 +2281,74 @@ ul.cart-header2 li span h6 {
 
 /*--login end here--*/
 
+/*--Advance search start here--*/
+.advance-search {
+    padding: 5em 0em 5em 0em;
+    margin:auto;
+}
+.advance-search-top {
+    text-align: center;
+    padding: 0em 0em 2em 0em;
+}
+
+.advance-search-top h1 {
+    font-size: 2.5em;
+    color: #EA572D;
+    margin: 0em 0em 0.1em 0em;
+    font-family: 'Oswald', sans-serif;
+}
+.search-container{
+    float: right;
+    margin-right: 100px;
+    margin-top: 20px;
+}
+.search-button{
+    font-size: 1em;
+    color: #fff;
+    padding: 0.5em 1.5em;
+    border: none;
+    background: #EA572D;
+    outline: none;
+    display: block;
+    margin-top: 1em
+}
+.search-button:hover{
+    background: #847057;
+}
+.advance-search-box h2{
+    color: #EA572D;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom:0.5em;
+    font-size:2em;
+
+}
+.advance-search #name{
+    font-size: 1em;
+    color: #999;
+    padding: 0.5em 1em;
+    display: block;
+    margin-bottom: 1.5em;
+    outline: none;
+    width: 100%;
+}
+.name-box{
+    width: 87%;
+    margin-left: 76px;
+}
+.advance-search-box .row .col-md-12{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: baseline;
+    justify-content: space-around
+}
+
+.advance-search-box .row .col-md-12 select{
+    width:200px;
+    padding: 0.5em 1em;
+}
+/*--Advance search end here--*/
 
 /*--contact start here--*/
 
