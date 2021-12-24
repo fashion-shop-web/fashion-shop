@@ -82,6 +82,16 @@ class ProductController {
             console.log(err);
         }
     }
+
+    //[GET] advanced search product list
+    async advanceSearchList(req,res){
+        try{
+            const [products, pages] = await productService.advanceSearchList(req.query.name,req.query.category,req.query.brand,req.query.sale, req.query.page || 1);
+            res.render('product/search', { products, pages, currentPage: req.query.page || 1 });
+        } catch(err){
+            console.log(err);
+        }
+    }
 }
 
 module.exports = new ProductController;
