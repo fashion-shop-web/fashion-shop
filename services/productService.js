@@ -244,8 +244,8 @@ const SortProduct = async (filter, option) => {
                 } else {
                     products = await product.find({ sale: { $gte: parseInt(sale) }, gender: true }).lean();
                 }
-                break;
             }
+            break;
         }
         case 'sale': {
             if (isCategory) {
@@ -260,8 +260,8 @@ const SortProduct = async (filter, option) => {
                 } else {
                     products = await product.find({ sale: { $gte: parseInt(sale) }, sale: { $gt: 0 } }).lean();
                 }
-                break;
             }
+            break;
         }
         default: throw new Error('invalid option');
     }

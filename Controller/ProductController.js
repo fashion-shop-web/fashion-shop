@@ -41,7 +41,7 @@ class ProductController {
 
         try {
             const [products, pages, sort] = await productService.getListProduct(page, filter, 'women');
-            res.render('product/men', { products, pages, currentPage: page, sort });
+            res.render('product/women', { products, pages, currentPage: page, sort });
         } catch (err) {
             console.log(err);
         }
@@ -56,7 +56,7 @@ class ProductController {
 
         try {
             const [products, pages, sort] = await productService.getListProduct(page, filter, 'sale');
-            res.render('product/men', { products, pages, currentPage: page, sort });
+            res.render('product/sale', { products, pages, currentPage: page, sort });
         } catch (err) {
             console.log(err);
         }
