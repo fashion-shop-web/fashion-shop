@@ -5,16 +5,15 @@
                 <h1>Advance Search</h1>
             </div>
             <div class="advance-search-box">
+                <div class="col-md-12">
                 <div class="name-box">
-                    <div class="col-md-12">
                         <h2>Name</h2>
                         <input name="name" id="name"type="text" placeholder="Name" onfocus="this.value = '';"
                             onblur="if (this.value == '') {this.value = '';}" />
                     </div>
                 </div>
-                <div class="radio-container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-left:110px">
+                            <div class="col-md-4">
                             <div class="categories-radio">
                                 <h2>Categories</h2>
                                 <select id="categories" >
@@ -24,6 +23,8 @@
                                     <option value="Wrist watch">Wrist watch</option>
                                 </select>
                             </div>
+                            </div>
+                            <div class="col-md-4">
                             <div class="brand-radio">
                                 <h2>Brand</h2>
                                 <select id="brand" >
@@ -41,7 +42,9 @@
                                     <option value="Michael+Kors">Michael Kors</option>
                                     <option value="Fendi">Fendi</option>
                                 </select>
+                            </div>'
                             </div>
+                            <div class="col-md-4">
                             <div class="discount-radio">
                                 <h2>Discount</h2>
                                 <select id="discount" >
@@ -53,14 +56,13 @@
                                     <option value="10">10% and above</option>
                                 </select>
                             </div>
+                            </div>
                         </div>
-                    </div>
                     <div class="row">
                         <div class="search-container">
                             <button class="search-button" id="search-button">Search</button>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

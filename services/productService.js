@@ -316,7 +316,7 @@ const advancedSearchProduct = async (productName, productCategory, productBrand,
             , sale: { "$gte": parseInt(productSale) }
         }).lean();
 
-        const perPage = 6;
+        const perPage = 8;
         const page = parseInt(reqPage);
 
         const start = (page - 1) * perPage;
@@ -324,7 +324,7 @@ const advancedSearchProduct = async (productName, productCategory, productBrand,
         for (let i = 0; i < products.length / perPage; i++) {
             let temp = {};
             temp.page = i + 1;
-            temp.pageA = `&page=${i + 1}`;
+            temp.pageA = `?name=${productName}&category=${productCategory}&brand=${productBrand}&sale=${productSale}&page=${i + 1}`;
             pages.push(temp);
         }
         products = products.slice(start, end);
