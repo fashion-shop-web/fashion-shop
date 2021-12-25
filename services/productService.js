@@ -304,16 +304,15 @@ const searchProduct = async (productName, reqPage) => {
     return [products, pages];
 }
 
-const advanceSearchList = async (productName, productCategory, productBrand, productSale, reqPage) => {
+const advancedSearchProduct = async (productName, productCategory, productBrand, productSale, reqPage) => {
     let products = [];
     let pages = [];
 
     try {
-        products = await product.find({ name: { "$regex": productName, "$options": "i" }, 
-        category: { "$regex": productCategory, "$options": "i" },
-        brand: { "$regex": productBrand, "$options": "i" },
-        sale: { "$regex": productSale, "$options": "i" }
-    }).lean();
+        productBrand.replace("+"," ");
+        products = await product.find({ name: {"$regex": productName, "$options": "i",$ne:null }
+        ,category:{"$regex": productCategory, "$options": "i",$ne:null },brand: {"$regex": productBrand, "$options": "i",$ne:null}
+        ,sale: { "$gte": parseInt(productSale)}}).lean();
 
         const perPage = 6;
         const page = parseInt(reqPage);
@@ -351,5 +350,5 @@ module.exports = {
     homeProduct,
     SortProduct,
     findProductByID,
-    advanceSearchList,
+    advancedSearchProduct,
 }

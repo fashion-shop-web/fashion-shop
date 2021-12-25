@@ -10,6 +10,8 @@ router.get('/sale', productController.saleList);
 router.get('/all', productController.allList)
 
 router.get('/search', productController.searchList)
+router.get('/advancesearch', productController.advanceSearchList)
+
 router.get('/:slug', productController.showDetail);
 
 module.exports = router;

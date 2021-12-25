@@ -13,6 +13,6 @@ advanceSearchButton.onclick=function(){
     var brand = document.getElementById("brand");
     var discount = document.getElementById("discount");
 
-    document.location.href = (`/product/search?name=${name.value}&categories=${categories.value}
-&brand=${brand.value}&discount=${discount.value}`);
+    document.location.href = (`/product/advancesearch?name=${name.value}&category=${categories.value}
+&brand=${brand.value}&sale=${discount.value}`);
 }
