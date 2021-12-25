@@ -84,12 +84,11 @@ class ProductController {
     }
 
     //[GET] advanced search product list
-    async advanceSearchList(req,res){
-        try{
-            console.log(req.query.category);
-            const [products, pages] = await productService.advancedSearchProduct(req.query.name,req.query.category,req.query.brand,req.query.sale, req.query.page || 1);
+    async advanceSearchList(req, res) {
+        try {
+            const [products, pages] = await productService.advancedSearchProduct(req.query.name, req.query.category, req.query.brand, req.query.sale, req.query.page || 1);
             res.render('product/search', { products, pages, currentPage: req.query.page || 1 });
-        } catch(err){
+        } catch (err) {
             console.log(err);
         }
     }
