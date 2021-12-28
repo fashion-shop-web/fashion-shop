@@ -11,12 +11,15 @@ class LoginController {
 
     //authenticate
     authenticate(req, res, next) {
-        passport.authenticate('local', function (err, user) {
+        passport.authenticate('local', async function (err, user) {
+            const {email, password} = req.body;
             if (err) return next(err);
             //banned
             if (user.status) return res.redirect('/login?banned');
             //wrong password, email address
-            if (!user) return res.redirect('/login?wrong-login')
+            if (!user) return res.redirect('/login?wrong-login');
+            const validPass = await loginService.validPassword(password,user);
+            if (!validPass) return res.redirect('/login?wrong-login');
             req.logIn(user, function (err) {
                 if (err) return next(err);
                 //success

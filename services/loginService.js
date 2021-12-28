@@ -21,7 +21,6 @@ exports.FindCart = async (userID) => {
 exports.getNumberArriving = async (userID) => {
     const orders = await orderService.getAllOrder(userID);
     const len = orders.filter(item => (item.status !== 'received' && item.status !== 'cancel')).length;
-    console.log(len)
     return len;
 }
 
